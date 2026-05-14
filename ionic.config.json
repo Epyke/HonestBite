@@ -1,0 +1,7 @@
+{
+  "name": "HonestBite",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
