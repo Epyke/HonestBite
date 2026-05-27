@@ -1,0 +1,124 @@
+<ion-content [fullscreen]="true" class="register-content">
+  <main class="register-page">
+    <ion-card class="register-card">
+      <section class="brand">
+        <h1>HonestBite</h1>
+        <p>Cria a tua conta e começa a descobrir restaurantes com reviews honestas.</p>
+      </section>
+
+      <form [formGroup]="registerForm" (ngSubmit)="criarConta()" class="register-form">
+        <ion-list lines="none" class="form-list">
+          <ion-item class="premium-input">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+
+            <ion-input
+              label="Nome Completo"
+              label-placement="floating"
+              type="text"
+              autocomplete="name"
+              formControlName="nomeCompleto"
+            ></ion-input>
+          </ion-item>
+
+          <ion-note color="danger" *ngIf="nomeCompleto?.touched && nomeCompleto?.invalid">
+            Introduz o teu nome completo.
+          </ion-note>
+
+          <ion-item class="premium-input">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+
+            <ion-input
+              label="E-mail"
+              label-placement="floating"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+
+          <ion-note color="danger" *ngIf="email?.touched && email?.invalid">
+            Introduz um e-mail válido.
+          </ion-note>
+
+          <ion-item class="premium-input">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+
+            <ion-input
+              label="Palavra-passe"
+              label-placement="floating"
+              [type]="mostrarPassword ? 'text' : 'password'"
+              autocomplete="new-password"
+              formControlName="password"
+            ></ion-input>
+
+            <ion-button
+              slot="end"
+              fill="clear"
+              type="button"
+              class="password-toggle"
+              (click)="alternarPassword()"
+              [attr.aria-label]="mostrarPassword ? 'Esconder password' : 'Mostrar password'"
+            >
+              <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <ion-note color="danger" *ngIf="password?.touched && password?.invalid">
+            A password deve ter pelo menos 6 caracteres.
+          </ion-note>
+
+          <ion-item class="premium-input">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+
+            <ion-input
+              label="Confirmar Palavra-passe"
+              label-placement="floating"
+              [type]="mostrarConfirmarPassword ? 'text' : 'password'"
+              autocomplete="new-password"
+              formControlName="confirmarPassword"
+            ></ion-input>
+
+            <ion-button
+              slot="end"
+              fill="clear"
+              type="button"
+              class="password-toggle"
+              (click)="alternarConfirmarPassword()"
+              [attr.aria-label]="mostrarConfirmarPassword ? 'Esconder confirmação de password' : 'Mostrar confirmação de password'"
+            >
+              <ion-icon [name]="mostrarConfirmarPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <ion-note
+            color="danger"
+            *ngIf="confirmarPassword?.touched && confirmarPassword?.hasError('required')"
+          >
+            Confirma a tua password.
+          </ion-note>
+
+          <ion-note
+            color="danger"
+            *ngIf="confirmarPassword?.touched && registerForm.hasError('passwordsNaoCoincidem')"
+          >
+            As passwords não coincidem.
+          </ion-note>
+        </ion-list>
+
+        <ion-button
+          expand="block"
+          type="submit"
+          class="register-button"
+          [disabled]="registerForm.invalid"
+        >
+          Criar Conta
+        </ion-button>
+      </form>
+
+      <footer class="register-links">
+        <span>Já tens conta? <a href="#">Entra aqui</a></span>
+      </footer>
+    </ion-card>
+  </main>
+</ion-content>
