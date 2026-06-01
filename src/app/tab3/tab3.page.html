@@ -4,10 +4,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="favorites-content">
+
+  <!-- Cabeçalho -->
+  <div class="favorites-header">
+    <h2 class="favorites-title">Os Meus Favoritos</h2>
+    <p class="favorites-subtitle">
+      {{ hasFavorites ? favorites.length + ' restaurante(s) guardado(s)' : 'Ainda sem favoritos' }}
+    </p>
+  </div>
+
+  <!-- Lista de favoritos -->
+  @if (hasFavorites) {
+    <div class="favorites-list">
+      @for (restaurant of favorites; track restaurant.id) {
+        <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
+      }
+    </div>
+  }
+
+  <!-- Estado vazio -->
+  @if (!hasFavorites) {
+    <div class="empty-state">
+      <div class="empty-icon-wrapper">
+        <ion-icon name="heart-outline"></ion-icon>
+      </div>
+      <h3 class="empty-title">Sem favoritos ainda</h3>
+      <p class="empty-text">
+        Explora restaurantes e guarda os teus preferidos tocando no ❤️ na página do restaurante.
+      </p>
+    </div>
+  }
+
 </ion-content>

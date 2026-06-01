@@ -47,10 +47,9 @@ export class Tab4Page {
     });
   }
 
-  editProfile(): void {
-    // Navegar para página de edição (a implementar futuramente)
-    console.log('Editar perfil');
-  }
+ editProfile(): void {
+  this.router.navigate(['/edit-profile']);
+}
 
   logout(): void {
     this.router.navigate(['/login']);

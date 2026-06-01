@@ -7,9 +7,10 @@ import {
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline, locationOutline, cashOutline,
-  starSharp, createOutline
+  starSharp, createOutline, heart, heartOutline
 } from 'ionicons/icons';
 import { Restaurants, Restaurant } from '../services/restaurants';
+import { FavoritesService } from '../services/favorites/favorites';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -24,15 +25,27 @@ export class RestaurantDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private restaurantService: Restaurants,
+    private favoritesService: FavoritesService,
     private location: Location
   ) {
-    addIcons({ arrowBackOutline, locationOutline, cashOutline, starSharp, createOutline });
+    addIcons({
+      arrowBackOutline, locationOutline, cashOutline,
+      starSharp, createOutline, heart, heartOutline
+    });
   }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) this.restaurant = this.restaurantService.getById(id);
     if (!this.restaurant) this.location.back();
+  }
+
+  get isFavorite(): boolean {
+    return this.restaurant ? this.favoritesService.isFavorite(this.restaurant.id) : false;
+  }
+
+  toggleFavorite(): void {
+    if (this.restaurant) this.favoritesService.toggle(this.restaurant.id);
   }
 
   goBack(): void {

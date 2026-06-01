@@ -21,4 +21,9 @@ export const routes: Routes = [
     path: 'restaurant/:id',   // ← nova rota
     loadComponent: () => import('./restaurant-detail/restaurant-detail.page').then((m) => m.RestaurantDetailPage),
   },
+  {
+  path: 'edit-profile',
+  loadComponent: () =>
+    import('./edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
+}
 ];

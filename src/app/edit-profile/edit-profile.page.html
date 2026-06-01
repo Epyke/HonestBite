@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true" class="profile-content">
+  <main class="profile-page">
+    <ion-card class="profile-card">
+
+    <ion-buttons class="back-button-wrapper">
+        <ion-button fill="clear" class="back-button" (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
+      <section class="profile-header">
+        <div class="avatar">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+
+        <h1>Editar Perfil</h1>
+        <p>Os teus dados pessoais na HonestBite.</p>
+      </section>
+
+      <form [formGroup]="profileForm" (ngSubmit)="guardarPerfil()" class="profile-form">
+        <ion-list lines="none" class="form-list">
+          <ion-item class="premium-input">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Nome Completo"
+              label-placement="floating"
+              formControlName="nome"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-input
+              label="E-mail"
+              label-placement="floating"
+              type="email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Telefone"
+              label-placement="floating"
+              type="tel"
+              formControlName="telefone"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Cidade"
+              label-placement="floating"
+              formControlName="cidade"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <ion-button expand="block" type="submit" class="profile-button">
+          Guardar Alterações
+        </ion-button>
+      </form>
+    </ion-card>
+  </main>
+</ion-content>

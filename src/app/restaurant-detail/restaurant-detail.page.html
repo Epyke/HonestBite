@@ -1,13 +1,22 @@
 <ion-content class="detail-content" [fullscreen]="true">
   @if (restaurant) {
 
-    <!-- Hero com botão de voltar sobreposto -->
+    <!-- Hero com botões sobrepostos -->
     <div class="hero-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
       <div class="hero-gradient"></div>
+
+      <!-- Botão voltar -->
       <ion-buttons class="back-btn-wrapper">
         <ion-button fill="clear" class="back-btn" (click)="goBack()">
           <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <!-- Botão favorito -->
+      <ion-buttons class="fav-btn-wrapper">
+        <ion-button fill="clear" class="fav-btn" (click)="toggleFavorite()">
+          <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
         </ion-button>
       </ion-buttons>
     </div>
