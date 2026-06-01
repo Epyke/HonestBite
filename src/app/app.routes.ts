@@ -6,18 +6,19 @@ export const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
-  path: 'login',
-  loadComponent: () =>
-    import('./login/login.page').then((m) => m.LoginPage),
-},
-{
-  path: 'register',
-  loadComponent: () =>
-    import('./register/register.page').then((m) => m.RegisterPage),
-},
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./register/register.page').then((m) => m.RegisterPage),
+  },
   {
     path: 'forgot-password',
-    loadComponent: () => import('./forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
+    loadComponent: () => import('./forgot-password/forgot-password.page').then((m) => m.ForgotPasswordPage),
   },
-
+  {
+    path: 'restaurant/:id',   // ← nova rota
+    loadComponent: () => import('./restaurant-detail/restaurant-detail.page').then((m) => m.RestaurantDetailPage),
+  },
 ];

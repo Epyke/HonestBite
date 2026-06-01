@@ -1,0 +1,77 @@
+<ion-content class="detail-content" [fullscreen]="true">
+  @if (restaurant) {
+
+    <!-- Hero com botão de voltar sobreposto -->
+    <div class="hero-wrapper">
+      <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
+      <div class="hero-gradient"></div>
+      <ion-buttons class="back-btn-wrapper">
+        <ion-button fill="clear" class="back-btn" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <!-- Cartão de detalhe flutuante -->
+    <div class="detail-card">
+
+      <div class="detail-title-row">
+        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+        <div class="rating-pill">
+          <ion-icon name="star-sharp"></ion-icon>
+          <span>{{ restaurant.global }}</span>
+        </div>
+      </div>
+
+      <span class="category-badge">{{ restaurant.category }}</span>
+
+      <div class="detail-meta">
+        <span class="meta-item">
+          <ion-icon name="location-outline"></ion-icon>
+          {{ restaurant.city }} · {{ restaurant.distance }}
+        </span>
+        <span class="meta-item">
+          <ion-icon name="cash-outline"></ion-icon>
+          Preço médio: {{ restaurant.avgPrice }}
+        </span>
+      </div>
+
+      <p class="restaurant-description">{{ restaurant.description }}</p>
+
+      <div class="divider"></div>
+
+      <!-- Avaliações -->
+      <div class="reviews-section">
+        <div class="reviews-header">
+          <h2 class="reviews-title">Avaliações</h2>
+          <span class="reviews-count">{{ restaurant.reviews.length }} avaliações</span>
+        </div>
+
+        @for (review of restaurant.reviews; track review.id) {
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">{{ review.initials }}</div>
+              <div class="review-meta">
+                <span class="review-name">{{ review.userName }}</span>
+                <span class="review-date">{{ review.date }}</span>
+              </div>
+              <div class="review-rating">
+                <ion-icon name="star-sharp"></ion-icon>
+                <span>{{ review.rating }}</span>
+              </div>
+            </div>
+            <p class="review-comment">{{ review.comment }}</p>
+          </div>
+        }
+      </div>
+
+    </div>
+  }
+</ion-content>
+
+<ion-footer class="detail-footer">
+  <ion-button expand="block" class="write-review-btn">
+    <ion-icon slot="start" name="create-outline"></ion-icon>
+    Escrever uma Avaliação
+  </ion-button>
+</ion-footer>

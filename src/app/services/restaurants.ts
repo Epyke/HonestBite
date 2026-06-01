@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
 
+export interface Review {
+  id: string;
+  userName: string;
+  initials: string;
+  rating: number;
+  date: string;
+  comment: string;
+}
+
 export interface Restaurant {
   id: string;
   name: string;
@@ -11,80 +20,85 @@ export interface Restaurant {
   avgPrice: string;
   global: number;
   description: string;
+  reviews: Review[];
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class Restaurants {
   private restaurants: Restaurant[] = [
     {
       id: '1',
       name: 'O Cantinho do Bacalhau',
-      cover: 'assets/restaurants/cantinho-bacalhau-cover.jpg',
+      cover: 'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=600&q=80',
       logo: 'assets/restaurants/cantinho-bacalhau-logo.png',
-      distance: '1.4 km',
-      city: 'Braga',
+      distance: '1.4 km', city: 'Braga',
       category: 'Cozinha Tradicional Portuguesa',
-      avgPrice: '18€ - 30€',
-      global: 4.8,
-      description: 'Especialistas no autêntico Bacalhau à Braga. Um ambiente familiar, acolhedor e com receitas passadas de geração em geração.'
+      avgPrice: '18€ - 30€', global: 4.8,
+      description: 'Especialistas no autêntico Bacalhau à Braga. Um ambiente familiar, acolhedor e com receitas passadas de geração em geração.',
+      reviews: [
+        { id: 'r1', userName: 'Ana Ferreira', initials: 'AF', rating: 5, date: 'Maio 2025', comment: 'O melhor bacalhau que comi na minha vida. O ambiente é familiar e o atendimento foi impecável. Voltei três vezes!' },
+        { id: 'r2', userName: 'Miguel Santos', initials: 'MS', rating: 4.5, date: 'Abril 2025', comment: 'Excelente relação qualidade-preço. As porções são generosas e a comida é muito saborosa. Recomendo vivamente.' },
+        { id: 'r3', userName: 'Joana Carvalho', initials: 'JC', rating: 5, date: 'Março 2025', comment: 'Autenticidade pura. Sente-se logo que as receitas são de família. O arroz de bacalhau é simplesmente divinal.' }
+      ]
     },
     {
       id: '2',
       name: 'Taberna do Rio',
-      cover: 'assets/restaurants/taberna-rio-cover.jpg',
-      logo: 'assets/restaurants/taberna-rio-logo.png',
-      distance: '2.8 km',
-      city: 'Porto',
+      cover: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',      logo: 'assets/restaurants/taberna-rio-logo.png',
+      distance: '2.8 km', city: 'Porto',
       category: 'Petiscos & Vinhos',
-      avgPrice: '12€ - 22€',
-      global: 4.5,
-      description: 'A melhor seleção de petiscos tradicionais com vista para o Douro. Não deixe de provar as nossas tábuas de queijos, enchidos e as famosas amêijoas.'
+      avgPrice: '12€ - 22€', global: 4.5,
+      description: 'A melhor seleção de petiscos tradicionais com vista para o Douro. Não deixe de provar as nossas tábuas de queijos, enchidos e as famosas amêijoas.',
+      reviews: [
+        { id: 'r1', userName: 'Pedro Oliveira', initials: 'PO', rating: 4.5, date: 'Maio 2025', comment: 'Vista deslumbrante para o Douro e petiscos de qualidade. Os vinhos regionais são uma excelente escolha. Ideal para uma tarde relaxada.' },
+        { id: 'r2', userName: 'Sofia Mendes', initials: 'SM', rating: 4, date: 'Abril 2025', comment: 'Boa comida e ambiente agradável. A tábua de enchidos está ao nível do melhor que já provei no Porto.' }
+      ]
     },
     {
       id: '3',
       name: 'A Tasca do Vigário',
-      cover: 'assets/restaurants/tasca-vigario-cover.jpg',
-      logo: 'assets/restaurants/tasca-vigario-logo.png',
-      distance: '4.1 km',
-      city: 'Lisboa',
+      cover: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80',      logo: 'assets/restaurants/tasca-vigario-logo.png',
+      distance: '4.1 km', city: 'Lisboa',
       category: 'Fados & Grelhados',
-      avgPrice: '20€ - 35€',
-      global: 4.6,
-      description: 'Escondido no coração de Alfama, venha saborear carnes e peixes grelhados no carvão enquanto desfruta de uma noite de Fado Vadio.'
+      avgPrice: '20€ - 35€', global: 4.6,
+      description: 'Escondido no coração de Alfama, venha saborear carnes e peixes grelhados no carvão enquanto desfruta de uma noite de Fado Vadio.',
+      reviews: [
+        { id: 'r1', userName: 'Inês Rodrigues', initials: 'IR', rating: 5, date: 'Maio 2025', comment: 'Uma experiência inesquecível! O fado ao vivo combinado com os grelhados tornou a noite absolutamente mágica. Obrigatório para quem visita Lisboa.' },
+        { id: 'r2', userName: 'Tiago Lopes', initials: 'TL', rating: 4, date: 'Março 2025', comment: 'Localização fantástica em Alfama. A comida é muito boa, mas o destaque é mesmo o ambiente. O fado vadio é autêntico e emocionante.' }
+      ]
     },
     {
       id: '4',
       name: 'Maré Viva',
-      cover: 'assets/restaurants/mare-viva-cover.jpg',
-      logo: 'assets/restaurants/mare-viva-logo.png',
-      distance: '0.5 km',
-      city: 'Matosinhos',
+      cover: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80',      logo: 'assets/restaurants/mare-viva-logo.png',
+      distance: '0.5 km', city: 'Matosinhos',
       category: 'Marisqueira & Peixe Fresco',
-      avgPrice: '30€ - 50€',
-      global: 4.9,
-      description: 'Peixe fresco capturado diariamente e grelhado na perfeição por mestres assadores. O verdadeiro sabor do mar no seu prato.'
+      avgPrice: '30€ - 50€', global: 4.9,
+      description: 'Peixe fresco capturado diariamente e grelhado na perfeição por mestres assadores. O verdadeiro sabor do mar no seu prato.',
+      reviews: [
+        { id: 'r1', userName: 'Rui Almeida', initials: 'RA', rating: 5, date: 'Maio 2025', comment: 'Perfeição absoluta. O linguado grelhado desfaz-se na boca. Sabia que estava a comer peixe fresco logo na primeira dentada.' },
+        { id: 'r2', userName: 'Catarina Silva', initials: 'CS', rating: 5, date: 'Abril 2025', comment: 'Melhor marisqueira de Matosinhos, sem dúvida. As amêijoas à bulhão pato e o robalo grelhado são imperdíveis.' },
+        { id: 'r3', userName: 'Bruno Costa', initials: 'BC', rating: 4.5, date: 'Março 2025', comment: 'Experiência de nível superior. O atendimento é profissional e a qualidade do marisco é imbatível. Vale cada cêntimo.' }
+      ]
     },
     {
       id: '5',
       name: 'Sabores do Alentejo',
-      cover: 'assets/restaurants/sabores-alentejo-cover.jpg',
+      cover: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
       logo: 'assets/restaurants/sabores-alentejo-logo.png',
-      distance: '6.3 km',
-      city: 'Évora',
+      distance: '6.3 km', city: 'Évora',
       category: 'Cozinha Regional Alentejana',
-      avgPrice: '15€ - 28€',
-      global: 4.4,
-      description: 'Pratos ricos em tradição. Destacam-se as nossas bochechas de porco preto alentejano e as açordas aromáticas com ervas locais.'
+      avgPrice: '15€ - 28€', global: 4.4,
+      description: 'Pratos ricos em tradição. Destacam-se as nossas bochechas de porco preto alentejano e as açordas aromáticas com ervas locais.',
+      reviews: [
+        { id: 'r1', userName: 'Mariana Sousa', initials: 'MS', rating: 4.5, date: 'Abril 2025', comment: 'As bochechas de porco preto são simplesmente divinas. A açorda de cogumelos é o melhor que já provei. Ambiente rústico e acolhedor.' },
+        { id: 'r2', userName: 'Filipe Nunes', initials: 'FN', rating: 4, date: 'Fevereiro 2025', comment: 'Culinária alentejana autêntica e saborosa. Os preços são muito razoáveis para a qualidade. O vinho da casa é uma boa surpresa.' }
+      ]
     }
   ];
 
-  getAll(): Restaurant[] {
-    return this.restaurants;
-  }
-
+  getAll(): Restaurant[] { return this.restaurants; }
   getById(id: string): Restaurant | undefined {
-    return this.restaurants.find(restaurant => restaurant.id === id);
+    return this.restaurants.find(r => r.id === id);
   }
 }

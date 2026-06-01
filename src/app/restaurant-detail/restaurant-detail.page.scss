@@ -1,0 +1,254 @@
+// ── Fundo ─────────────────────────────────────
+.detail-content {
+  --background: #e8ecf0;
+}
+
+// ── Hero ──────────────────────────────────────
+.hero-wrapper {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 265px;
+  display: block;
+  object-fit: cover;
+  background-color: #c8d0d8;
+}
+
+.hero-gradient {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.38));
+  pointer-events: none;
+}
+
+.back-btn-wrapper {
+  position: absolute;
+  top: 14px;
+  left: 8px;
+}
+
+.back-btn {
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: rgba(255, 255, 255, 0.88);
+  --background-hover: rgba(255, 255, 255, 1);
+  --color: #1f2933;
+  --border-radius: 50%;
+  --box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  width: 42px;
+  height: 42px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  ion-icon { font-size: 21px; }
+}
+
+// ── Cartão flutuante ──────────────────────────
+.detail-card {
+  background: #ffffff;
+  border-radius: 22px 22px 0 0;
+  margin-top: -22px;
+  padding: 26px 20px 32px;
+  min-height: 60vh;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+}
+
+// ── Cabeçalho do restaurante ──────────────────
+.detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.restaurant-name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f2933;
+  letter-spacing: -0.3px;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #2f6f5e;
+  color: #ffffff;
+  border-radius: 22px;
+  padding: 6px 13px;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(47, 111, 94, 0.30);
+
+  ion-icon { color: #f59e0b; font-size: 14px; }
+}
+
+.category-badge {
+  display: inline-block;
+  background: #f0f7f4;
+  color: #2f6f5e;
+  border-radius: 8px;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 0.1px;
+}
+
+// ── Meta info ─────────────────────────────────
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: #5f6b76;
+  font-weight: 500;
+
+  ion-icon {
+    font-size: 17px;
+    color: #2f6f5e;
+    flex-shrink: 0;
+  }
+}
+
+// ── Descrição ─────────────────────────────────
+.restaurant-description {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7a87;
+  line-height: 1.65;
+}
+
+.divider {
+  height: 1px;
+  background: #f0f2f5;
+  margin: 24px 0;
+}
+
+// ── Reviews ───────────────────────────────────
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.reviews-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2933;
+  letter-spacing: -0.2px;
+}
+
+.reviews-count {
+  font-size: 13px;
+  color: #9aa5b0;
+  font-weight: 600;
+}
+
+.review-card {
+  background: #f8f9fb;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 1px solid #eef0f3;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2f6f5e, #3a8870);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.review-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.review-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2933;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #9aa5b0;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2933;
+
+  ion-icon { color: #f59e0b; font-size: 14px; }
+}
+
+.review-comment {
+  margin: 0;
+  font-size: 14px;
+  color: #5f6b76;
+  line-height: 1.6;
+}
+
+// ── Footer ────────────────────────────────────
+.detail-footer {
+  background: #ffffff !important;
+  padding: 12px 16px 8px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.07);
+  border-top: 1px solid #f0f2f5;
+}
+
+.write-review-btn {
+  --background: #2f6f5e;
+  --background-hover: #285f51;
+  --background-activated: #224f44;
+  --color: #ffffff;
+  --border-radius: 12px;
+  --box-shadow: 0 6px 18px rgba(47, 111, 94, 0.28);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  height: 52px;
+  margin: 0;
+}

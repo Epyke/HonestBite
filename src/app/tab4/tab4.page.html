@@ -4,10 +4,84 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 4</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="profile-content">
+
+  <!-- Hero do perfil -->
+  <div class="profile-hero">
+    <div class="avatar-wrapper">
+      <div class="avatar">{{ user.initials }}</div>
+      <div class="avatar-badge">✓</div>
+    </div>
+    <h1 class="profile-name">{{ user.name }}</h1>
+    <p class="profile-since">{{ user.memberSince }}</p>
+  </div>
+
+  <!-- Cartão de informações pessoais -->
+  <div class="profile-card">
+
+    <h3 class="card-section-title">Informações Pessoais</h3>
+
+    <div class="info-row">
+      <div class="info-icon-wrapper">
+        <ion-icon name="person-outline"></ion-icon>
+      </div>
+      <div class="info-content">
+        <span class="info-label">Nome completo</span>
+        <span class="info-value">{{ user.name }}</span>
+      </div>
+    </div>
+
+    <div class="info-divider"></div>
+
+    <div class="info-row">
+      <div class="info-icon-wrapper">
+        <ion-icon name="mail-outline"></ion-icon>
+      </div>
+      <div class="info-content">
+        <span class="info-label">Email</span>
+        <span class="info-value">{{ user.email }}</span>
+      </div>
+    </div>
+
+    <div class="info-divider"></div>
+
+    <div class="info-row">
+      <div class="info-icon-wrapper">
+        <ion-icon name="call-outline"></ion-icon>
+      </div>
+      <div class="info-content">
+        <span class="info-label">Telemóvel</span>
+        <span class="info-value">{{ user.phone }}</span>
+      </div>
+    </div>
+
+    <div class="info-divider"></div>
+
+    <div class="info-row align-top">
+      <div class="info-icon-wrapper">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </div>
+      <div class="info-content">
+        <span class="info-label">Sobre mim</span>
+        <span class="info-value">{{ user.description }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Botões de ação -->
+  <div class="actions-section">
+
+    <ion-button expand="block" class="btn-edit" (click)="editProfile()">
+      <ion-icon slot="start" name="pencil-outline"></ion-icon>
+      Editar Perfil
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" class="btn-logout" (click)="logout()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Terminar Sessão
+    </ion-button>
+
+  </div>
+
 </ion-content>

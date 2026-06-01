@@ -1,29 +1,26 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
+import { IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { starSharp, locationOutline, cashOutline } from 'ionicons/icons';
+import { Restaurant } from '../../services/restaurants';
 
 @Component({
   selector: 'restaurant-card',
   templateUrl: 'restaurant-card.component.html',
   styleUrls: ['restaurant-card.component.scss'],
-  imports: [IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle],
+  standalone: true,
+  imports: [IonIcon],
 })
 export class RestaurantCardComponent {
-  @Input() id = '';
-  @Input() name = '';
-  @Input() cover = '';
-  @Input() logo = '';
-  @Input() distance = '';
-  @Input() city = '';
-  @Input() category = '';
-  @Input() avgPrice = '';
+  @Input() restaurant!: Restaurant;
+  @Input() variant: 'compact' | 'full' = 'full';
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
+    addIcons({ starSharp, locationOutline, cashOutline });
   }
 
-  /**
-  openRestuarant(id: string) {
-    this.router.navigate(['/books', id]);
+  openDetail(): void {
+    this.router.navigate(['/restaurant', this.restaurant.id]);
   }
-  */
 }
