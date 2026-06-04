@@ -1,18 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
-  IonHeader, IonToolbar, IonContent, IonChip, IonLabel, IonIcon
+  IonHeader, IonToolbar, IonContent, IonChip, IonLabel, IonIcon, IonSearchbar, IonRefresher
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { sparklesOutline } from 'ionicons/icons';
+import { trophyOutline } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
 import { RestaurantCardComponent } from '../components/restaurant-card/restaurant-card.component';
-import { Restaurants, Restaurant } from '../services/restaurants';
-
-interface Category {
-  label: string;
-  value: string;
-  icon: string;
-}
+import { Restaurants, Restaurant } from '../services/restaurants/restaurants';
+import { Categories, Category } from '../services/categories/categories';
 
 @Component({
   selector: 'app-tab1',
@@ -24,24 +19,22 @@ interface Category {
     IonChip, IonLabel, IonIcon,
     CustomToolbarComponent,
     RestaurantCardComponent,
+    IonSearchbar,
+    IonRefresher,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Tab1Page {
 
-  categories: Category[] = [
-    { label: 'Todos',       value: 'todos',       icon: '🍽️' },
-    { label: 'Tradicional', value: 'tradicional', icon: '🥘' },
-    { label: 'Petiscos',    value: 'petiscos',    icon: '🧀' },
-    { label: 'Grelhados',   value: 'grelhados',   icon: '🔥' },
-    { label: 'Marisqueira', value: 'marisqueira', icon: '🦞' },
-    { label: 'Regional',    value: 'regional',    icon: '🌿' },
-  ];
-
   selectedCategory = 'todos';
+  categories: Category[] = [];
 
-  constructor(private restaurantService: Restaurants) {
-    addIcons({ sparklesOutline });
+  constructor(
+    private restaurantService: Restaurants,
+    private categoriesService: Categories,
+  ) {
+    addIcons({ trophyOutline });
+    this.categories = this.categoriesService.getAll();
   }
 
   get popularRestaurants(): Restaurant[] {
@@ -56,6 +49,12 @@ export class Tab1Page {
     return all.filter(r =>
       r.category.toLowerCase().includes(this.selectedCategory)
     );
+  }
+
+  handleRefresh(event: any): void {
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
   selectCategory(value: string): void {

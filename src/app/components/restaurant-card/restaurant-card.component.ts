@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { starSharp, locationOutline, cashOutline } from 'ionicons/icons';
-import { Restaurant } from '../../services/restaurants';
+import { Restaurant } from '../../services/restaurants/restaurants';
 
 @Component({
   selector: 'restaurant-card',

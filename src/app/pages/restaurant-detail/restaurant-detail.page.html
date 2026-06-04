@@ -8,14 +8,14 @@
 
       <!-- Botão voltar -->
       <ion-buttons class="back-btn-wrapper">
-        <ion-button fill="clear" class="back-btn" (click)="goBack()">
+        <ion-button shape="round" fill="clear" class="back-btn" (click)="goBack()">
           <ion-icon name="arrow-back-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
 
       <!-- Botão favorito -->
       <ion-buttons class="fav-btn-wrapper">
-        <ion-button fill="clear" class="fav-btn" (click)="toggleFavorite()">
+        <ion-button shape="round" fill="clear" class="fav-btn" (click)="toggleFavorite()">
           <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -27,8 +27,8 @@
       <div class="detail-title-row">
         <h1 class="restaurant-name">{{ restaurant.name }}</h1>
         <div class="rating-pill">
-          <ion-icon name="star-sharp"></ion-icon>
           <span>{{ restaurant.global }}</span>
+          <ion-icon name="star-sharp"></ion-icon>
         </div>
       </div>
 
@@ -65,8 +65,8 @@
                 <span class="review-date">{{ review.date }}</span>
               </div>
               <div class="review-rating">
-                <ion-icon name="star-sharp"></ion-icon>
                 <span>{{ review.rating }}</span>
+                <ion-icon name="star-sharp"></ion-icon>
               </div>
             </div>
             <p class="review-comment">{{ review.comment }}</p>
@@ -80,7 +80,7 @@
 
 <ion-footer class="detail-footer">
   <ion-button expand="block" class="write-review-btn">
-    <ion-icon slot="start" name="create-outline"></ion-icon>
+    <ion-icon slot="end" name="create-outline"></ion-icon>
     Escrever uma Avaliação
   </ion-button>
 </ion-footer>

@@ -27,15 +27,12 @@
   padding-bottom: 8px;
 }
 
-.categories-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 4px 20px 10px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.chips-swiper {
+  padding: 4px 20px 10px !important;
+}
 
-  &::-webkit-scrollbar { display: none; }
+.chip-slide {
+  width: auto !important;
 }
 
 ion-chip {
@@ -133,4 +130,15 @@ ion-chip {
   margin: 0;
   font-size: 15px;
   color: #9aa5b0;
+}
+
+.popular-swiper {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 4px !important;
+
+  swiper-slide {  // ← add this block
+    height: auto;
+    align-self: stretch;
+  }
 }

@@ -4,8 +4,8 @@
     <div class="card-image-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="card-image" />
       <div class="rating-badge">
-        <ion-icon name="star-sharp"></ion-icon>
         <span>{{ restaurant.global }}</span>
+        <ion-icon name="star-sharp"></ion-icon>
       </div>
     </div>
     <div class="card-body">
@@ -25,8 +25,8 @@
     <div class="card-image-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="card-image" />
       <div class="rating-badge">
-        <ion-icon name="star-sharp"></ion-icon>
         <span>{{ restaurant.global }}</span>
+        <ion-icon name="star-sharp"></ion-icon>
       </div>
     </div>
     <div class="card-body">
@@ -35,7 +35,7 @@
       <div class="card-meta">
         <span class="meta-item">
           <ion-icon name="location-outline"></ion-icon>
-          {{ restaurant.city }} · {{ restaurant.distance }}
+          {{ restaurant.city }} - {{ restaurant.distance }}
         </span>
         <span class="meta-divider">·</span>
         <span class="meta-item">

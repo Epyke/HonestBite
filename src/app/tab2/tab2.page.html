@@ -24,12 +24,11 @@
     <div class="categories-section">
       <h3 class="categories-label">Explorar por categoria</h3>
       <div class="categories-grid">
-        @for (cat of categories; track cat.keyword) {
+        @for (cat of categories; track cat.value) {
           <div
             class="category-tile"
             [style.background]="cat.color"
-            (click)="searchByCategory(cat.keyword)">
-            <span class="tile-icon">{{ cat.icon }}</span>
+            (click)="searchByCategory(cat.value)">
             <span class="tile-label">{{ cat.label }}</span>
           </div>
         }

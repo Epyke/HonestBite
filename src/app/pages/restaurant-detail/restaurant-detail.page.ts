@@ -2,22 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
-  IonContent, IonIcon, IonButton, IonButtons, IonFooter
+  IonContent, IonIcon, IonButton, IonButtons, IonFooter,
+  IonHeader, IonToolbar, IonTitle
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline, locationOutline, cashOutline,
   starSharp, createOutline, heart, heartOutline
 } from 'ionicons/icons';
-import { Restaurants, Restaurant } from '../services/restaurants';
-import { FavoritesService } from '../services/favorites/favorites';
+import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { FavoritesService } from '../../services/favorites/favorites';
 
 @Component({
   selector: 'app-restaurant-detail',
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle],
 })
 export class RestaurantDetailPage implements OnInit {
   restaurant?: Restaurant;
