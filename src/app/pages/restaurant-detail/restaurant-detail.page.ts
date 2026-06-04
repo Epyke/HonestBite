@@ -12,6 +12,7 @@ import {
   timeOutline, navigateOutline
 } from 'ionicons/icons';
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { ReviewCardComponent } from '../../components/review-card/review-card.component';
 import { FavoritesService } from '../../services/favorites/favorites';
 
 @Component({
@@ -19,7 +20,7 @@ import { FavoritesService } from '../../services/favorites/favorites';
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, ReviewCardComponent],
 })
 export class RestaurantDetailPage implements OnInit {
   restaurant?: Restaurant;

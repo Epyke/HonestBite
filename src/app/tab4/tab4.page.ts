@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  IonHeader, IonToolbar, IonContent, IonIcon, IonButton
+  IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
@@ -25,7 +25,7 @@ interface UserProfile {
   styleUrls: ['tab4.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonContent, IonIcon, IonButton,
+    IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar,
     CustomToolbarComponent,
   ],
 })
