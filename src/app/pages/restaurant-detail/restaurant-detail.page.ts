@@ -8,7 +8,8 @@ import {
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline, locationOutline, cashOutline,
-  starSharp, createOutline, heart, heartOutline
+  starSharp, createOutline, heart, heartOutline,
+  timeOutline
 } from 'ionicons/icons';
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 import { FavoritesService } from '../../services/favorites/favorites';
@@ -31,7 +32,7 @@ export class RestaurantDetailPage implements OnInit {
   ) {
     addIcons({
       arrowBackOutline, locationOutline, cashOutline,
-      starSharp, createOutline, heart, heartOutline
+      starSharp, createOutline, heart, heartOutline, timeOutline
     });
   }
 
@@ -52,4 +53,9 @@ export class RestaurantDetailPage implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  get todayIndex(): number {
+  const jsDay = new Date().getDay();
+  return jsDay === 0 ? 6 : jsDay - 1;
+  } 
 }

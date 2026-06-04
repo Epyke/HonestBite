@@ -311,3 +311,52 @@
 
   ion-icon { font-size: 21px; }
 }
+
+.schedule-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2933;
+  margin: 0 0 14px;
+
+  ion-icon { color: #2f6f5e; font-size: 20px; }
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  &.today {
+    background: #f0f7f4;
+    .schedule-day   { color: #2f6f5e; font-weight: 700; }
+    .schedule-hours { color: #2f6f5e; font-weight: 700; }
+  }
+}
+
+.schedule-day {
+  font-size: 14px;
+  color: #5f6b76;
+}
+
+.schedule-hours {
+  font-size: 14px;
+  color: #1f2933;
+  font-weight: 600;
+
+  &.closed { color: #e53e3e; font-weight: 500; }
+}
