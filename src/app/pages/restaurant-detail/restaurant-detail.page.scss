@@ -36,8 +36,8 @@
 
 // ── Botão direções ────────────────────────────
 .maps-btn {
-  --background: #2f6f5e;
-  --background-hover: #285f51;
+  --background: #f97316;
+  --background-hover: #ea6a00;
   --color: #ffffff;
   --border-radius: 50%;
   --padding-start: 0;
@@ -133,7 +133,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #2f6f5e;
+  background: #f97316;
   color: #ffffff;
   border-radius: 22px;
   padding: 6px 13px;
@@ -142,13 +142,13 @@
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(47, 111, 94, 0.30);
 
-  ion-icon { color: #f59e0b; font-size: 14px; }
+  ion-icon { color: #ffffff; font-size: 14px; }
 }
 
 .category-badge {
   display: inline-block;
   background: #f0f7f4;
-  color: #2f6f5e;
+  color: #f97316;
   border-radius: 8px;
   padding: 5px 11px;
   font-size: 12px;
@@ -175,7 +175,7 @@
 
   ion-icon {
     font-size: 17px;
-    color: #2f6f5e;
+    color: #f97316;
     flex-shrink: 0;
   }
 }
@@ -235,7 +235,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2f6f5e, #3a8870);
+  background: linear-gradient(135deg, #f97316, #3a8870);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -291,8 +291,8 @@
 }
 
 .write-review-btn {
-  --background: #2f6f5e;
-  --background-hover: #285f51;
+  --background: #f97316;
+  --background-hover: #ea6a00;
   --background-activated: #224f44;
   --color: #ffffff;
   --border-radius: 12px;
@@ -341,7 +341,7 @@
   color: #1f2933;
   margin: 0 0 14px;
 
-  ion-icon { color: #2f6f5e; font-size: 20px; }
+  ion-icon { color: #f97316; font-size: 20px; }
 }
 
 .schedule-list {
@@ -359,8 +359,8 @@
 
   &.today {
     background: #f0f7f4;
-    .schedule-day   { color: #2f6f5e; font-weight: 700; }
-    .schedule-hours { color: #2f6f5e; font-weight: 700; }
+    .schedule-day   { color: #f97316; font-weight: 700; }
+    .schedule-hours { color: #f97316; font-weight: 700; }
   }
 }
 

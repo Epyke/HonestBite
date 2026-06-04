@@ -51,10 +51,10 @@ ion-chip {
   transition: all 0.2s ease;
 
   &.selected {
-    --background: #2f6f5e;
+    --background: #f97316;
     --color: #ffffff;
-    border-color: #2f6f5e;
-    box-shadow: 0 4px 14px rgba(47, 111, 94, 0.28);
+    border-color: #f97316;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
   }
 }
 
@@ -87,7 +87,7 @@ ion-chip {
 
 .section-icon {
   font-size: 18px;
-  color: #2f6f5e;
+  color: #f97316;
 }
 
 .section-count {
