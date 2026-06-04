@@ -59,9 +59,8 @@ export class Restaurants {
         { id: 'r3', userName: 'Joana Carvalho', initials: 'JC', rating: 5, date: 'Março 2025', comment: 'Autenticidade pura. Sente-se logo que as receitas são de família. O arroz de bacalhau é simplesmente divinal.' }
       ],
       menuPhotos: [
-        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
-        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
-        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        'assets/restaurants/menus/m1.jpg',
+        'assets/restaurants/menus/m2.jpg',
       ]
     },
     {
@@ -88,8 +87,8 @@ export class Restaurants {
         { id: 'r2', userName: 'Sofia Mendes', initials: 'SM', rating: 4, date: 'Abril 2025', comment: 'Boa comida e ambiente agradável. A tábua de enchidos está ao nível do melhor que já provei no Porto.' }
       ],
       menuPhotos: [
-        'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
-        'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=800&q=80',
+        'assets/restaurants/menus/m3.jpg',
+        'assets/restaurants/menus/m4.webp',
       ]
     },
     {
@@ -116,9 +115,8 @@ export class Restaurants {
         { id: 'r2', userName: 'Tiago Lopes', initials: 'TL', rating: 4, date: 'Março 2025', comment: 'Localização fantástica em Alfama. A comida é muito boa, mas o destaque é mesmo o ambiente. O fado vadio é autêntico e emocionante.' }
       ],
       menuPhotos: [
-        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
-        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
-        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
+        'assets/restaurants/menus/m5.webp',
+        'assets/restaurants/menus/m1.jpg',
       ]
     },
     {
@@ -146,9 +144,8 @@ export class Restaurants {
         { id: 'r3', userName: 'Bruno Costa', initials: 'BC', rating: 4.5, date: 'Março 2025', comment: 'Experiência de nível superior. O atendimento é profissional e a qualidade do marisco é imbatível. Vale cada cêntimo.' }
       ],
       menuPhotos: [
-        'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=800&q=80',
-        'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
-        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        'assets/restaurants/menus/m2.jpg',
+        'assets/restaurants/menus/m3.jpg',
       ]
     },
     {
@@ -175,8 +172,8 @@ export class Restaurants {
         { id: 'r2', userName: 'Filipe Nunes', initials: 'FN', rating: 4, date: 'Fevereiro 2025', comment: 'Culinária alentejana autêntica e saborosa. Os preços são muito razoáveis para a qualidade. O vinho da casa é uma boa surpresa.' }
       ],
       menuPhotos: [
-        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
-        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
+        'assets/restaurants/menus/m4.webp',
+        'assets/restaurants/menus/m5.webp',
       ]
     }
   ];
