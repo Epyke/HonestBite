@@ -34,6 +34,29 @@
   --color: #e53e3e;
 }
 
+// ── Action row (badge + menu btn) ─────────────
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.menu-btn {
+  --background: #f97316;
+  --background-hover: #ea6a00;
+  --color: #ffffff;
+  --border-radius: 20px;
+  --box-shadow: 0 3px 10px rgba(249, 115, 22, 0.30);
+  --padding-start: 14px;
+  --padding-end: 14px;
+  height: 34px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 // ── Botão direções ────────────────────────────
 .maps-btn {
   --background: #f97316;
@@ -146,14 +169,15 @@
 }
 
 .category-badge {
-  display: inline-block;
-  background: #f0f7f4;
+  display: inline-flex;
+  align-items: center;
+  background: #fff7ed;
   color: #f97316;
   border-radius: 8px;
   padding: 5px 11px;
   font-size: 12px;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   letter-spacing: 0.1px;
 }
 

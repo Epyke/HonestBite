@@ -44,7 +44,13 @@
         </ion-row>
       </ion-grid>
 
-      <span class="category-badge">{{ restaurant.category }}</span>
+      <div class="action-row">
+        <span class="category-badge">{{ restaurant.category }}</span>
+        <ion-button class="menu-btn" (click)="openMenu()">
+          <ion-icon slot="start" name="fast-food-outline"></ion-icon>
+          Ver Menu
+        </ion-button>
+      </div>
 
       <div class="detail-meta">
         <span class="meta-item">

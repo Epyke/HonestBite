@@ -28,6 +28,7 @@ export interface Restaurant {
   description: string;
   reviews: Review[];
   schedule: Schedule[];
+  menuPhotos: string[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -56,6 +57,11 @@ export class Restaurants {
         { id: 'r1', userName: 'Ana Ferreira', initials: 'AF', rating: 5, date: 'Maio 2025', comment: 'O melhor bacalhau que comi na minha vida. O ambiente é familiar e o atendimento foi impecável. Voltei três vezes!' },
         { id: 'r2', userName: 'Miguel Santos', initials: 'MS', rating: 4.5, date: 'Abril 2025', comment: 'Excelente relação qualidade-preço. As porções são generosas e a comida é muito saborosa. Recomendo vivamente.' },
         { id: 'r3', userName: 'Joana Carvalho', initials: 'JC', rating: 5, date: 'Março 2025', comment: 'Autenticidade pura. Sente-se logo que as receitas são de família. O arroz de bacalhau é simplesmente divinal.' }
+      ],
+      menuPhotos: [
+        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
+        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
       ]
     },
     {
@@ -80,6 +86,10 @@ export class Restaurants {
       reviews: [
         { id: 'r1', userName: 'Pedro Oliveira', initials: 'PO', rating: 4.5, date: 'Maio 2025', comment: 'Vista deslumbrante para o Douro e petiscos de qualidade. Os vinhos regionais são uma excelente escolha. Ideal para uma tarde relaxada.' },
         { id: 'r2', userName: 'Sofia Mendes', initials: 'SM', rating: 4, date: 'Abril 2025', comment: 'Boa comida e ambiente agradável. A tábua de enchidos está ao nível do melhor que já provei no Porto.' }
+      ],
+      menuPhotos: [
+        'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
+        'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=800&q=80',
       ]
     },
     {
@@ -104,6 +114,11 @@ export class Restaurants {
       reviews: [
         { id: 'r1', userName: 'Inês Rodrigues', initials: 'IR', rating: 5, date: 'Maio 2025', comment: 'Uma experiência inesquecível! O fado ao vivo combinado com os grelhados tornou a noite absolutamente mágica. Obrigatório para quem visita Lisboa.' },
         { id: 'r2', userName: 'Tiago Lopes', initials: 'TL', rating: 4, date: 'Março 2025', comment: 'Localização fantástica em Alfama. A comida é muito boa, mas o destaque é mesmo o ambiente. O fado vadio é autêntico e emocionante.' }
+      ],
+      menuPhotos: [
+        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
       ]
     },
     {
@@ -129,6 +144,11 @@ export class Restaurants {
         { id: 'r1', userName: 'Rui Almeida', initials: 'RA', rating: 5, date: 'Maio 2025', comment: 'Perfeição absoluta. O linguado grelhado desfaz-se na boca. Sabia que estava a comer peixe fresco logo na primeira dentada.' },
         { id: 'r2', userName: 'Catarina Silva', initials: 'CS', rating: 5, date: 'Abril 2025', comment: 'Melhor marisqueira de Matosinhos, sem dúvida. As amêijoas à bulhão pato e o robalo grelhado são imperdíveis.' },
         { id: 'r3', userName: 'Bruno Costa', initials: 'BC', rating: 4.5, date: 'Março 2025', comment: 'Experiência de nível superior. O atendimento é profissional e a qualidade do marisco é imbatível. Vale cada cêntimo.' }
+      ],
+      menuPhotos: [
+        'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=800&q=80',
+        'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
+        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
       ]
     },
     {
@@ -153,6 +173,10 @@ export class Restaurants {
       reviews: [
         { id: 'r1', userName: 'Mariana Sousa', initials: 'MS', rating: 4.5, date: 'Abril 2025', comment: 'As bochechas de porco preto são simplesmente divinas. A açorda de cogumelos é o melhor que já provei. Ambiente rústico e acolhedor.' },
         { id: 'r2', userName: 'Filipe Nunes', initials: 'FN', rating: 4, date: 'Fevereiro 2025', comment: 'Culinária alentejana autêntica e saborosa. Os preços são muito razoáveis para a qualidade. O vinho da casa é uma boa surpresa.' }
+      ],
+      menuPhotos: [
+        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+        'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
       ]
     }
   ];

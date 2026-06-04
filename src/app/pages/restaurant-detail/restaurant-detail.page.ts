@@ -9,11 +9,13 @@ import { addIcons } from 'ionicons';
 import {
   arrowBackOutline, locationOutline, cashOutline,
   starSharp, createOutline, heart, heartOutline,
-  timeOutline, navigateOutline
+  timeOutline, navigateOutline, fastFoodOutline
 } from 'ionicons/icons';
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 import { ReviewCardComponent } from '../../components/review-card/review-card.component';
 import { FavoritesService } from '../../services/favorites/favorites';
+import { ModalController } from '@ionic/angular/standalone';
+import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -29,11 +31,12 @@ export class RestaurantDetailPage implements OnInit {
     private route: ActivatedRoute,
     private restaurantService: Restaurants,
     private favoritesService: FavoritesService,
-    private location: Location
+    private location: Location,
+    private modalCtrl: ModalController
   ) {
     addIcons({
       arrowBackOutline, locationOutline, cashOutline,
-      starSharp, createOutline, heart, heartOutline, timeOutline, navigateOutline
+      starSharp, createOutline, heart, heartOutline, timeOutline, navigateOutline, fastFoodOutline
     });
   }
 
@@ -61,6 +64,17 @@ export class RestaurantDetailPage implements OnInit {
   }
 
   openMaps(): void {
-  window.open(this.restaurant!.mapsUrl, '_system');
+    window.open(this.restaurant!.mapsUrl, '_system');
+  }
+
+  async openMenu(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: MenuModalComponent,
+      componentProps: {
+        photos: this.restaurant!.menuPhotos,
+        restaurantName: this.restaurant!.name,
+      },
+    });
+    await modal.present();
   }
 }
