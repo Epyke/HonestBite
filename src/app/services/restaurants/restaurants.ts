@@ -17,6 +17,7 @@ export interface Review {
 export interface Restaurant {
   id: string;
   name: string;
+  mapsUrl: string;
   cover: string;
   logo: string;
   distance: string;
@@ -35,6 +36,7 @@ export class Restaurants {
     {
       id: '1',
       name: 'O Cantinho do Bacalhau',
+      mapsUrl: 'https://www.google.com/maps/search/Cantinho+do+Bacalhau+Braga+Portugal',
       cover: 'https://images.unsplash.com/photo-1551782450-17144efb9c50?w=600&q=80',
       logo: 'assets/restaurants/cantinho-bacalhau-logo.png',
       distance: '1.4 km', city: 'Braga',
@@ -59,6 +61,7 @@ export class Restaurants {
     {
       id: '2',
       name: 'Taberna do Rio',
+      mapsUrl: 'https://www.google.com/maps/search/Taberna+Rio+Cais+da+Ribeira+Porto+Portugal',
       cover: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',
       logo: 'assets/restaurants/taberna-rio-logo.png',
       distance: '2.8 km', city: 'Porto',
@@ -82,6 +85,7 @@ export class Restaurants {
     {
       id: '3',
       name: 'A Tasca do Vigário',
+      mapsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJwQ2lwUI1GQ0RAh2PRr61DfE',
       cover: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80',
       logo: 'assets/restaurants/tasca-vigario-logo.png',
       distance: '4.1 km', city: 'Lisboa',
@@ -105,6 +109,7 @@ export class Restaurants {
     {
       id: '4',
       name: 'Maré Viva',
+      mapsUrl: 'https://www.google.com/maps/search/Maré+Viva+Matosinhos+Portugal',
       cover: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80',
       logo: 'assets/restaurants/mare-viva-logo.png',
       distance: '0.5 km', city: 'Matosinhos',
@@ -129,6 +134,7 @@ export class Restaurants {
     {
       id: '5',
       name: 'Sabores do Alentejo',
+      mapsUrl: 'https://www.google.com/maps/search/Sabores+do+Alentejo+Évora+Portugal',
       cover: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
       logo: 'assets/restaurants/sabores-alentejo-logo.png',
       distance: '6.3 km', city: 'Évora',

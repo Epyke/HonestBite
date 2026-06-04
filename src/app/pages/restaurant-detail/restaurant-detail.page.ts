@@ -3,13 +3,13 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonContent, IonIcon, IonButton, IonButtons, IonFooter,
-  IonHeader, IonToolbar, IonTitle
+  IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline, locationOutline, cashOutline,
   starSharp, createOutline, heart, heartOutline,
-  timeOutline
+  timeOutline, navigateOutline
 } from 'ionicons/icons';
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 import { FavoritesService } from '../../services/favorites/favorites';
@@ -19,7 +19,7 @@ import { FavoritesService } from '../../services/favorites/favorites';
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol],
 })
 export class RestaurantDetailPage implements OnInit {
   restaurant?: Restaurant;
@@ -32,7 +32,7 @@ export class RestaurantDetailPage implements OnInit {
   ) {
     addIcons({
       arrowBackOutline, locationOutline, cashOutline,
-      starSharp, createOutline, heart, heartOutline, timeOutline
+      starSharp, createOutline, heart, heartOutline, timeOutline, navigateOutline
     });
   }
 
@@ -57,5 +57,9 @@ export class RestaurantDetailPage implements OnInit {
   get todayIndex(): number {
   const jsDay = new Date().getDay();
   return jsDay === 0 ? 6 : jsDay - 1;
-  } 
+  }
+
+  openMaps(): void {
+  window.open(this.restaurant!.mapsUrl, '_system');
+  }
 }

@@ -24,13 +24,25 @@
     <!-- Cartão de detalhe flutuante -->
     <div class="detail-card">
 
-      <div class="detail-title-row">
-        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
-        <div class="rating-pill">
-          <span>{{ restaurant.global }}</span>
-          <ion-icon name="star-sharp"></ion-icon>
-        </div>
-      </div>
+      
+      <ion-grid class="detail-title-grid">
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button class="maps-btn" (click)="openMaps()">
+              <ion-icon slot="icon-only" name="navigate-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="auto">
+            <div class="rating-pill">
+              <span>{{ restaurant.global }}</span>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
       <span class="category-badge">{{ restaurant.category }}</span>
 
