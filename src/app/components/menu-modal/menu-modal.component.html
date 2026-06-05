@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ restaurantName }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="menu-content">
+  <div class="photos-list">
+    @for (photo of photos; track photo; let i = $index) {
+      <div class="photo-wrapper" (click)="openPhoto(photo)">
+        <img [src]="photo" [alt]="restaurantName + ' menu ' + (i + 1)" class="menu-photo" />
+        <div class="expand-hint">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+      </div>
+    }
+  </div>
+</ion-content>

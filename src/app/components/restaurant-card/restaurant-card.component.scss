@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   gap: 3px;
-  background: rgba(15, 20, 25, 0.62);
+  background: #f97316;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   color: #ffffff;
@@ -46,7 +46,7 @@
   font-weight: 700;
 
   ion-icon {
-    color: #f59e0b;
+    color: #ffffff;
     font-size: 11px;
   }
 }
@@ -91,7 +91,7 @@
 
   ion-icon {
     font-size: 13px;
-    color: #2f6f5e;
+    color: #f97316;
   }
 }
 
@@ -113,11 +113,23 @@
 
   ion-icon {
     font-size: 13px;
-    color: #2f6f5e;
+    color: #f97316;
   }
 }
 
 .meta-divider {
   color: #c8d0d8;
   font-size: 14px;
+}
+
+.card.compact {
+  height: 210px;
+}
+
+.card.compact .card-body {
+  overflow: hidden;
+}
+
+.card.compact .card-name {
+  -webkit-line-clamp: 1;
 }

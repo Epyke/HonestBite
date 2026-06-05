@@ -24,14 +24,15 @@
     <div class="categories-section">
       <h3 class="categories-label">Explorar por categoria</h3>
       <div class="categories-grid">
-        @for (cat of categories; track cat.keyword) {
-          <div
-            class="category-tile"
-            [style.background]="cat.color"
-            (click)="searchByCategory(cat.keyword)">
-            <span class="tile-icon">{{ cat.icon }}</span>
-            <span class="tile-label">{{ cat.label }}</span>
-          </div>
+        @for (cat of categories; track cat.value) {
+          @if(cat.value !== 'todos') {
+            <div
+              class="category-tile"
+              [style.background]="cat.color"
+              (click)="searchByCategory(cat.value)">
+              <span class="tile-label">{{ cat.label }}</span>
+            </div>
+          }
         }
       </div>
     </div>

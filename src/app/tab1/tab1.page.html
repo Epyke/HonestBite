@@ -6,31 +6,36 @@
 
 <ion-content [fullscreen]="true" class="home-content">
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <!-- Saudação -->
   <section class="greeting-section">
-    <h2 class="greeting-title">Bom dia! 👋</h2>
+    <h2 class="greeting-title">Bom dia</h2>
     <p class="greeting-subtitle">Que restaurante te apetece hoje?</p>
   </section>
 
   <!-- Filtros de categoria -->
   <section class="categories-section">
-    <div class="categories-scroll">
+    <swiper-container slides-per-view="auto" space-between="8" free-mode="true" class="chips-swiper">
       @for (cat of categories; track cat.value) {
-        <ion-chip
-          [class.selected]="selectedCategory === cat.value"
-          (click)="selectCategory(cat.value)">
-          <span class="chip-icon">{{ cat.icon }}</span>
-          <ion-label>{{ cat.label }}</ion-label>
-        </ion-chip>
+        <swiper-slide class="chip-slide">
+          <ion-chip
+            [class.selected]="selectedCategory === cat.value"
+            (click)="selectCategory(cat.value)">
+            <ion-label>{{ cat.label }}</ion-label>
+          </ion-chip>
+        </swiper-slide>
       }
-    </div>
+    </swiper-container>
   </section>
 
   <!-- Mais Populares -->
   <section class="feed-section">
     <div class="section-header">
       <h3 class="section-title">Mais Populares</h3>
-      <ion-icon name="sparkles-outline" class="section-icon"></ion-icon>
+      <ion-icon name="trophy-outline" class="section-icon"></ion-icon>
     </div>
     <swiper-container
       slides-per-view="1.75"

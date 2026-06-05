@@ -25,6 +25,28 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+// ── Photo viewer modal ────────────────────────
+.photo-viewer-modal {
+  --background: rgba(0, 0, 0, 0.95);
+  --border-radius: 0;
+
+  &::part(content) {
+    border-radius: 0;
+  }
+}
+
+// ── Global theme ──────────────────────────────
+ion-toolbar {
+  --background: #ffffff;
+  --color: #1f2933;
+  --border-color: #f0f2f5;
+  --min-height: 56px;
+}
+
+ion-header {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------

@@ -1,0 +1,14 @@
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-avatar">{{ review.initials }}</div>
+    <div class="review-meta">
+      <span class="review-name">{{ review.userName }}</span>
+      <span class="review-date">{{ review.date }}</span>
+    </div>
+    <div class="review-rating">
+      <span>{{ review.rating }}</span>
+      <ion-icon name="star-sharp"></ion-icon>
+    </div>
+  </div>
+  <p class="review-comment">{{ review.comment }}</p>
+</div>

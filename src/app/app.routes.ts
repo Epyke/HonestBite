@@ -7,23 +7,23 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.page').then((m) => m.RegisterPage),
+    loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage),
   },
   {
     path: 'forgot-password',
-    loadComponent: () => import('./forgot-password/forgot-password.page').then((m) => m.ForgotPasswordPage),
+    loadComponent: () => import('./pages/forgot-password/forgot-password.page').then((m) => m.ForgotPasswordPage),
   },
   {
-    path: 'restaurant/:id',   // ← nova rota
-    loadComponent: () => import('./restaurant-detail/restaurant-detail.page').then((m) => m.RestaurantDetailPage),
+    path: 'restaurant/:id',
+    loadComponent: () => import('./pages/restaurant-detail/restaurant-detail.page').then((m) => m.RestaurantDetailPage),
   },
   {
   path: 'edit-profile',
   loadComponent: () =>
-    import('./edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
+    import('./pages/edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
 }
 ];

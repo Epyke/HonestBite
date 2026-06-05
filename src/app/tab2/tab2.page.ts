@@ -4,14 +4,8 @@ import {
 } from '@ionic/angular/standalone';
 import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
 import { RestaurantCardComponent } from '../components/restaurant-card/restaurant-card.component';
-import { Restaurants, Restaurant } from '../services/restaurants';
-
-interface CategoryCard {
-  label: string;
-  icon: string;
-  keyword: string;
-  color: string;
-}
+import { Restaurants, Restaurant } from '../services/restaurants/restaurants';
+import { Categories, Category } from '../services/categories/categories';
 
 @Component({
   selector: 'app-tab2',
@@ -27,17 +21,14 @@ interface CategoryCard {
 export class Tab2Page {
 
   searchQuery = '';
+  categories: Category[] = [];
 
-  categories: CategoryCard[] = [
-    { label: 'Tradicional',  icon: '🥘', keyword: 'tradicional', color: '#FFF3E0' },
-    { label: 'Petiscos',     icon: '🧀', keyword: 'petiscos',    color: '#F3E5F5' },
-    { label: 'Grelhados',    icon: '🔥', keyword: 'grelhados',   color: '#FCE4EC' },
-    { label: 'Marisqueira',  icon: '🦞', keyword: 'marisqueira', color: '#E0F7FA' },
-    { label: 'Regional',     icon: '🌿', keyword: 'regional',    color: '#E8F5E9' },
-    { label: 'Petiscos & Vinhos', icon: '🍷', keyword: 'vinhos', color: '#EDE7F6' },
-  ];
-
-  constructor(private restaurantService: Restaurants) {}
+  constructor(
+    private restaurantService: Restaurants,
+    private categoriesService: Categories,
+  ) {
+    this.categories = this.categoriesService.getAll();
+  }
 
   get isSearching(): boolean {
     return this.searchQuery.trim().length > 0;

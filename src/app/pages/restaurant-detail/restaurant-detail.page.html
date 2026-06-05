@@ -1,0 +1,111 @@
+<ion-content class="detail-content" [fullscreen]="true">
+  @if (restaurant) {
+
+    <!-- Hero com botões sobrepostos -->
+    <div class="hero-wrapper">
+      <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
+      <div class="hero-gradient"></div>
+
+      <!-- Botão voltar -->
+      <ion-buttons class="back-btn-wrapper">
+        <ion-button shape="round" fill="clear" class="back-btn" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <!-- Botão favorito -->
+      <ion-buttons class="fav-btn-wrapper">
+        <ion-button shape="round" fill="clear" class="fav-btn" (click)="toggleFavorite()">
+          <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <!-- Cartão de detalhe flutuante -->
+    <div class="detail-card">
+
+      
+      <ion-grid class="detail-title-grid">
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button class="maps-btn" (click)="openMaps()">
+              <ion-icon slot="icon-only" name="navigate-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="auto">
+            <div class="rating-pill">
+              <span>{{ restaurant.global }}</span>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="action-row">
+        <span class="category-badge">{{ restaurant.category }}</span>
+        <ion-button class="menu-btn" (click)="openMenu()">
+          <ion-icon slot="start" name="fast-food-outline"></ion-icon>
+          Ver Menu
+        </ion-button>
+      </div>
+
+      <div class="detail-meta">
+        <span class="meta-item">
+          <ion-icon name="location-outline"></ion-icon>
+          {{ restaurant.city }} · {{ restaurant.distance }}
+        </span>
+        <span class="meta-item">
+          <ion-icon name="cash-outline"></ion-icon>
+          Preço médio: {{ restaurant.avgPrice }}
+        </span>
+      </div>
+
+      <p class="restaurant-description">{{ restaurant.description }}</p>
+
+      <div class="divider"></div>
+
+    <!-- Horários -->
+    <div class="schedule-section">
+      <h2 class="section-title">
+        <ion-icon name="time-outline"></ion-icon>
+        Horários
+      </h2>
+      <div class="schedule-list">
+        @for (slot of restaurant.schedule; track slot.day; let i = $index) {
+          <div class="schedule-row" [class.today]="i === todayIndex">
+            <span class="schedule-day">{{ slot.day }}</span>
+            <span class="schedule-hours" [class.closed]="slot.hours === 'Fechado'">
+              {{ slot.hours }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+      <!-- Avaliações -->
+      <div class="reviews-section">
+        <div class="reviews-header">
+          <h2 class="reviews-title">Avaliações</h2>
+          <span class="reviews-count">{{ restaurant.reviews.length }} avaliações</span>
+        </div>
+
+        @for (review of restaurant.reviews; track review.id) {
+          <review-card [review]="review"></review-card>
+        }
+      </div>
+
+    </div>
+  }
+</ion-content>
+
+<ion-footer class="detail-footer">
+  <ion-button expand="block" class="write-review-btn">
+    <ion-icon slot="end" name="create-outline"></ion-icon>
+    Escrever uma Avaliação
+  </ion-button>
+</ion-footer>

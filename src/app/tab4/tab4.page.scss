@@ -22,7 +22,7 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2f6f5e, #3a8870);
+  background: linear-gradient(135deg, #f97316, #fb923c);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 1px;
-  box-shadow: 0 8px 24px rgba(47, 111, 94, 0.30);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.30);
 }
 
 .avatar-badge {
@@ -40,7 +40,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #2f6f5e;
+  background: #f97316;
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
@@ -102,7 +102,7 @@
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: #f0f7f4;
+  background: #fff7ed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +110,7 @@
 
   ion-icon {
     font-size: 18px;
-    color: #2f6f5e;
+    color: #f97316;
   }
 }
 
@@ -151,12 +151,12 @@
 }
 
 .btn-edit {
-  --background: #2f6f5e;
-  --background-hover: #285f51;
-  --background-activated: #224f44;
+  --background: #f97316;
+  --background-hover: #ea6a00;
+  --background-activated: #c85a00;
   --color: #ffffff;
   --border-radius: 12px;
-  --box-shadow: 0 6px 18px rgba(47, 111, 94, 0.28);
+  --box-shadow: 0 6px 18px rgba(249, 115, 22, 0.28);
   font-size: 15px;
   font-weight: 700;
   text-transform: none;
