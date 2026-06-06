@@ -14,8 +14,10 @@ import {
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 import { ReviewCardComponent } from '../../components/review-card/review-card.component';
 import { FavoritesService } from '../../services/favorites/favorites';
+import { RatingsService } from '../../services/ratings/ratings';
 import { ModalController } from '@ionic/angular/standalone';
 import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
+import { ReviewFormModalComponent } from '../../components/review-form-modal/review-form-modal.component';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -31,6 +33,7 @@ export class RestaurantDetailPage implements OnInit {
     private route: ActivatedRoute,
     private restaurantService: Restaurants,
     private favoritesService: FavoritesService,
+    private ratingsService: RatingsService,
     private location: Location,
     private modalCtrl: ModalController
   ) {
@@ -76,5 +79,25 @@ export class RestaurantDetailPage implements OnInit {
       },
     });
     await modal.present();
+  }
+
+  async openReviewForm(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: ReviewFormModalComponent,
+      componentProps: {
+        restaurantId: this.restaurant!.id,
+        restaurantName: this.restaurant!.name,
+      },
+      breakpoints: [0, 0.62],
+      initialBreakpoint: 0.62,
+      backdropBreakpoint: 0.62,
+      handleBehavior: 'cycle',
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm') {
+      this.ratingsService.submitReview(this.restaurant!.id, data);
+    }
   }
 }
