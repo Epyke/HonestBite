@@ -1,0 +1,55 @@
+<ion-header class="review-header">
+  <ion-toolbar class="review-toolbar">
+    <ion-title class="review-title">{{restaurantName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="close-btn" shape="round" (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="review-content">
+  <!-- Star rating -->
+  <div class="rating-section">
+    <p class="rating-label">A sua classificação</p>
+    <div class="star-row">
+      @for (s of stars; track s) {
+        <ion-icon
+          [name]="s <= rating ? 'star' : 'star-outline'"
+          class="star-icon"
+          [class.active]="s <= rating"
+          (click)="setRating(s)"
+        ></ion-icon>
+      }
+    </div>
+    @if (rating > 0) {
+      <p class="rating-text">{{ ratingLabel }}</p>
+    }
+  </div>
+
+  <!-- Form fields -->
+  <div class="form-section">
+    <div class="field-group">
+      <label class="field-label">Comentário</label>
+      <div class="field-wrapper textarea-wrapper">
+        <ion-textarea
+          class="field-textarea"
+          [(ngModel)]="comment"
+          placeholder="Partilhe a sua experiência..."
+          [rows]="4"
+        ></ion-textarea>
+      </div>
+    </div>
+  </div>
+
+  <ion-button
+    expand="block"
+    class="submit-btn"
+    (click)="submit()"
+    [disabled]="!isValid"
+  >
+    Publicar Avaliação
+  </ion-button>
+
+</ion-content>

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage {
   loginForm: FormGroup;
   mostrarPassword = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -39,7 +40,9 @@ export class LoginPage {
       this.loginForm.markAllAsTouched();
       return;
     }
-
-    console.log('Dados de login:', this.loginForm.value);
+    const email = this.loginForm.value.email as string;
+    const name = email.split('@')[0];
+    this.authService.login(name, email);
+    this.router.navigateByUrl('/');
   }
 }
