@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
   personOutline, mailOutline, callOutline,
-  pencilOutline, logOutOutline, chatbubbleEllipsesOutline
+  pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
 } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
 
@@ -43,7 +43,7 @@ export class Tab4Page {
   constructor(private router: Router) {
     addIcons({
       personOutline, mailOutline, callOutline,
-      pencilOutline, logOutOutline, chatbubbleEllipsesOutline
+      pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
     });
   }
 
@@ -53,5 +53,9 @@ export class Tab4Page {
 
   logout(): void {
     this.router.navigate(['/login']);
+  }
+
+  openAddRestaurant(): void {
+  this.router.navigate(['/add-restaurant']);
   }
 }
