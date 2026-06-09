@@ -10,7 +10,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,11 @@ export class RegisterPage {
   mostrarPassword = false;
   mostrarConfirmarPassword = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  errorMessage = '';
+  loading = false;
+  registered = false;
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.formBuilder.group(
       {
         nomeCompleto: ['', [Validators.required, Validators.minLength(2)]],
@@ -60,14 +65,22 @@ export class RegisterPage {
     this.mostrarConfirmarPassword = !this.mostrarConfirmarPassword;
   }
 
-  criarConta(): void {
+  async criarConta(): Promise<void> {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
-
-    const { confirmarPassword, ...dadosRegisto } = this.registerForm.value;
-    console.log('Dados de registo:', dadosRegisto);
+    this.loading = true;
+    this.errorMessage = '';
+    try {
+      const { nomeCompleto, email, password } = this.registerForm.value;
+      await this.authService.register(email, password, nomeCompleto);
+      this.router.navigateByUrl('/login');
+    } catch (err: any) {
+      this.errorMessage = err?.message ?? 'Erro ao criar conta.';
+    } finally {
+      this.loading = false;
+    }
   }
 
   private passwordsIguaisValidator(): ValidatorFn {

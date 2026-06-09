@@ -53,13 +53,17 @@
           </ion-note>
         </ion-list>
 
+        <ion-note color="danger" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </ion-note>
+
         <ion-button
           expand="block"
           type="submit"
           class="login-button"
-          [disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid || loading"
         >
-          Entrar
+          {{ loading ? 'A entrar...' : 'Entrar' }}
         </ion-button>
       </form>
 

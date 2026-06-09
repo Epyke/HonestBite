@@ -59,36 +59,4 @@ export class AddRestaurantPage {
   goBack(): void {
     this.router.navigate(['/tabs/tab4']);
   }
-
-  submit(): void {
-  this.submitted = true;
-  if (!this.form.valid) return;
-
-  const v = this.form.value;
-
-  const schedule: Schedule[] = [];
-  if (v.scheduleWeekdays)
-    ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'].forEach(day =>
-      schedule.push({ day, hours: v.scheduleWeekdays })
-    );
-  if (v.scheduleWeekends)
-    ['Sábado', 'Domingo'].forEach(day =>
-      schedule.push({ day, hours: v.scheduleWeekends })
-    );
-
-  this.restaurantsService.add({
-    name: v.name,
-    category: v.category,
-    city: v.city,
-    mapsUrl: v.address || '',
-    avgPrice: v.avgPrice,
-    description: v.description,
-    schedule,
-    cover: this.coverPreview || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',
-    menuPhotos: this.menuPreviews,
-  });
-
-  this.router.navigate(['/tabs/tab1']);
-}
-
 }
