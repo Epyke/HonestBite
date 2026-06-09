@@ -18,6 +18,8 @@ import { RatingsService } from '../../services/ratings/ratings';
 import { ModalController } from '@ionic/angular/standalone';
 import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
 import { ReviewFormModalComponent } from '../../components/review-form-modal/review-form-modal.component';
+import { AuthService } from '../../services/auth/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -35,7 +37,9 @@ export class RestaurantDetailPage implements OnInit {
     private favoritesService: FavoritesService,
     private ratingsService: RatingsService,
     private location: Location,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private authService: AuthService,
+    private router: Router,
   ) {
     addIcons({
       arrowBackOutline, locationOutline, cashOutline,
@@ -82,6 +86,10 @@ export class RestaurantDetailPage implements OnInit {
   }
 
   async openReviewForm(): Promise<void> {
+    if (!this.authService.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
     const modal = await this.modalCtrl.create({
       component: ReviewFormModalComponent,
       componentProps: {

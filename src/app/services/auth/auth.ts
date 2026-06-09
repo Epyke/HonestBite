@@ -1,34 +1,39 @@
 import { Injectable } from '@angular/core';
-
-export interface AuthUser {
-  name: string;
-  email: string;
-}
+import { Session, User } from '@supabase/supabase-js';
+import { Supabase } from '../supabase';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private user: AuthUser | null = null;
+  private session: Session | null = null;
 
-  constructor() {
-    const stored = localStorage.getItem('auth_user');
-    if (stored) this.user = JSON.parse(stored);
+  constructor(private supabase: Supabase) {
+    this.supabase.getSession().then(({ data }) => {
+      this.session = data.session;
+    });
   }
 
-  login(name: string, email: string): void {
-    this.user = { name, email };
-    localStorage.setItem('auth_user', JSON.stringify(this.user));
+  async login(email: string, password: string): Promise<void> {
+    const { error } = await this.supabase.signIn(email, password);
+    if (error) throw error;
+    const { data } = await this.supabase.getSession();
+    this.session = data.session;
   }
 
-  logout(): void {
-    this.user = null;
-    localStorage.removeItem('auth_user');
+  async register(email: string, password: string, username: string): Promise<void> {
+    const { error } = await this.supabase.signUp(email, password, username);
+    if (error) throw error;
   }
 
-  get currentUser(): AuthUser | null {
-    return this.user;
+  async logout(): Promise<void> {
+    await this.supabase.signOut();
+    this.session = null;
+  }
+
+  get currentUser(): User | null {
+    return this.session?.user ?? null;
   }
 
   get isLoggedIn(): boolean {
-    return this.user !== null;
+    return this.session !== null;
   }
 }

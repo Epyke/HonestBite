@@ -38,7 +38,7 @@ export class ReviewFormModalComponent {
     private authService: AuthService,
   ) {
     addIcons({ star, starOutline, closeOutline, personOutline, checkmarkOutline, restaurantOutline });
-    this.userName = this.authService.currentUser?.name ?? '';
+    this.userName = this.authService.currentUser?.user_metadata?.['username'] ?? '';
   }
 
   get ratingLabel(): string {
