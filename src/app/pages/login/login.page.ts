@@ -50,7 +50,7 @@ export class LoginPage {
       await this.authService.login(email, password);
       this.router.navigateByUrl('/');
     } catch (err: any) {
-      this.errorMessage = err?.message ?? 'Erro ao fazer login.';
+      this.errorMessage = 'E-mail ou palavra-passe incorretos.';
     } finally {
       this.loading = false;
     }
