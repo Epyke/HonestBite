@@ -1,3 +1,11 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true" class="login-content">
   <main class="login-page">
     <ion-card class="login-card">
@@ -53,18 +61,21 @@
           </ion-note>
         </ion-list>
 
+        <ion-note color="danger" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </ion-note>
+
         <ion-button
           expand="block"
           type="submit"
           class="login-button"
-          [disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid || loading"
         >
-          Entrar
+          {{ loading ? 'A entrar...' : 'Entrar' }}
         </ion-button>
       </form>
 
       <footer class="login-links">
-        <a routerLink="/forgot-password">Esqueceste-te da password?</a>
         <span>Ainda não tens conta? <a routerLink="/register">Regista-te aqui</a></span>
       </footer>
     </ion-card>

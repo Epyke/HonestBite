@@ -1,0 +1,73 @@
+<ion-content [fullscreen]="true" class="profile-content">
+  <main class="profile-page">
+    <ion-card class="profile-card">
+
+      <ion-buttons class="back-button-wrapper">
+        <ion-button fill="clear" class="back-button" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <section class="profile-header">
+        <div class="avatar">
+          <ion-icon name="restaurant-outline"></ion-icon>
+        </div>
+        <h1>O Meu Restaurante</h1>
+        <p>Adiciona o teu restaurante à HonestBite.</p>
+      </section>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="profile-form">
+        <ion-list lines="none" class="form-list">
+
+          <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('name')?.invalid">
+            <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+            <ion-input label="Nome do Restaurante" label-placement="floating" formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('category')?.invalid">
+            <ion-icon name="list-outline" slot="start"></ion-icon>
+            <ion-select label="Categoria" label-placement="floating" formControlName="category">
+              <ion-select-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('city')?.invalid">
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-input label="Cidade" label-placement="floating" formControlName="city"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-input label="Morada (opcional)" label-placement="floating" formControlName="address"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('avgPrice')?.invalid">
+            <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+            <ion-input label="Preço médio (ex: 10€ - 20€)" label-placement="floating" formControlName="avgPrice"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-input label="Horário (Seg-Sex)" label-placement="floating" placeholder="ex: 12:00 - 22:00" formControlName="scheduleWeekdays"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-input label="Horário (Sáb-Dom)" label-placement="floating" placeholder="ex: 12:00 - 23:00" formControlName="scheduleWeekends"></ion-input>
+          </ion-item>
+
+          <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('description')?.invalid">
+            <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+            <ion-textarea label="Descrição" label-placement="floating" formControlName="description" rows="3" auto-grow="true"></ion-textarea>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button expand="block" type="submit" class="profile-button">
+          Submeter Restaurante
+        </ion-button>
+      </form>
+
+    </ion-card>
+  </main>
+</ion-content>

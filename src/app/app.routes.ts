@@ -25,5 +25,9 @@ export const routes: Routes = [
   path: 'edit-profile',
   loadComponent: () =>
     import('./pages/edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
-}
+},
+  {
+    path: 'add-restaurant',
+    loadComponent: () => import('./pages/add-restaurant/add-restaurant.page').then( m => m.AddRestaurantPage)
+  },
 ];
