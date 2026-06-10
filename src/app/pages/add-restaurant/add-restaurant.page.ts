@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import {
   IonButton, IonButtons, IonCard, IonContent, IonIcon,
   IonInput, IonItem, IonList, IonSelect, IonSelectOption,
-  IonTextarea, IonLabel,
+  IonTextarea,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -21,7 +21,7 @@ import {
   imports: [
     CommonModule, ReactiveFormsModule,
     IonContent, IonCard, IonList, IonItem, IonInput, IonIcon,
-    IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea, IonLabel,
+    IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea,
   ],
 })
 export class AddRestaurantPage {

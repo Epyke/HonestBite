@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-  IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonIcon,
+  IonContent, IonTextarea, IonIcon,
   ModalController, AlertController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth/auth';
   imports: [
     FormsModule,
     IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-    IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonIcon,
+    IonContent, IonTextarea, IonIcon,
   ],
   templateUrl: './review-form-modal.component.html',
   styleUrls: ['./review-form-modal.component.scss'],

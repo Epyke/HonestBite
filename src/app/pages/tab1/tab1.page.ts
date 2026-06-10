@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
-  IonHeader, IonToolbar, IonContent, IonChip, IonLabel, IonIcon, IonSearchbar, IonRefresher
+  IonHeader, IonToolbar, IonContent, IonChip, IonLabel, IonIcon, IonRefresher
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trophyOutline } from 'ionicons/icons';
@@ -21,7 +21,6 @@ import {ViewWillEnter} from '@ionic/angular'
     IonChip, IonLabel, IonIcon,
     CustomToolbarComponent,
     RestaurantCardComponent,
-    IonSearchbar,
     IonRefresher,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  IonHeader, IonToolbar, IonContent, IonIcon, IonButton
+  IonHeader, IonToolbar, IonContent, IonIcon
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heartOutline, searchOutline } from 'ionicons/icons';
@@ -16,7 +16,7 @@ import { Restaurants, Restaurant } from '../../services/restaurants/restaurants'
   styleUrls: ['tab3.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonContent, IonIcon, IonButton,
+    IonHeader, IonToolbar, IonContent, IonIcon,
     CustomToolbarComponent,
     RestaurantCardComponent,
   ],
