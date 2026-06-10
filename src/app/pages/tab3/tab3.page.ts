@@ -5,10 +5,10 @@ import {
 import { addIcons } from 'ionicons';
 import { heartOutline, searchOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
-import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
-import { RestaurantCardComponent } from '../components/restaurant-card/restaurant-card.component';
-import { FavoritesService } from '../services/favorites/favorites';
-import { Restaurants, Restaurant } from '../services/restaurants/restaurants';
+import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
+import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+import { FavoritesService } from '../../services/favorites/favorites';
+import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 
 @Component({
   selector: 'app-tab3',
@@ -43,6 +43,6 @@ export class Tab3Page {
   }
 
   goToSearch(): void {
-    this.router.navigate(['/tabs/tab2']);
+    this.router.navigateByUrl('/tabs/tab2');
   }
 }

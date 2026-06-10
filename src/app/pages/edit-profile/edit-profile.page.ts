@@ -69,6 +69,6 @@ export class EditProfilePage {
   }
 
   goBack(): void {
-    this.router.navigate(['/tabs/tab4']);
+    this.router.navigateByUrl('/tabs/tab4');
     }
 }

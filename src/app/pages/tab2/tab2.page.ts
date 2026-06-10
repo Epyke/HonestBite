@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonContent, IonSearchbar
 } from '@ionic/angular/standalone';
-import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
-import { RestaurantCardComponent } from '../components/restaurant-card/restaurant-card.component';
-import { Restaurants, Restaurant } from '../services/restaurants/restaurants';
-import { Categories, Category } from '../services/categories/categories';
+import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
+import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { Categories, Category } from '../../services/categories/categories';
 
 @Component({
   selector: 'app-tab2',

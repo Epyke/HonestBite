@@ -4,10 +4,10 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trophyOutline } from 'ionicons/icons';
-import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
-import { RestaurantCardComponent } from '../components/restaurant-card/restaurant-card.component';
-import { Restaurants, Restaurant } from '../services/restaurants/restaurants';
-import { Categories, Category } from '../services/categories/categories';
+import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
+import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { Categories, Category } from '../../services/categories/categories';
 
 @Component({
   selector: 'app-tab1',

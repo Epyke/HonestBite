@@ -8,7 +8,7 @@ import {
   personOutline, mailOutline, callOutline,
   pencilOutline, logOutOutline, chatbubbleEllipsesOutline
 } from 'ionicons/icons';
-import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
+import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
 
 interface UserProfile {
   name: string;
@@ -48,10 +48,10 @@ export class Tab4Page {
   }
 
  editProfile(): void {
-  this.router.navigate(['/edit-profile']);
+  this.router.navigateByUrl('/edit-profile');
 }
 
   logout(): void {
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
   }
 }
