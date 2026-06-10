@@ -2,11 +2,11 @@
   <main class="profile-page">
     <ion-card class="profile-card">
 
-    <ion-buttons class="back-button-wrapper">
+      <ion-buttons class="back-button-wrapper">
         <ion-button fill="clear" class="back-button" (click)="goBack()">
-            <ion-icon name="arrow-back-outline"></ion-icon>
+          <ion-icon name="arrow-back-outline"></ion-icon>
         </ion-button>
-    </ion-buttons>
+      </ion-buttons>
 
       <section class="profile-header">
         <div class="avatar">
@@ -56,12 +56,22 @@
               formControlName="cidade"
             ></ion-input>
           </ion-item>
+
+          <ion-item class="premium-input">
+            <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Sobre mim"
+              label-placement="floating"
+              formControlName="descricao"
+            ></ion-input>
+          </ion-item>
         </ion-list>
 
         <ion-button expand="block" type="submit" class="profile-button">
           Guardar Alterações
         </ion-button>
       </form>
+
     </ion-card>
   </main>
 </ion-content>

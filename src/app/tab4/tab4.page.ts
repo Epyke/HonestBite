@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar
 } from '@ionic/angular/standalone';
@@ -9,6 +9,8 @@ import {
   pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
 } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../components/custom-toolbar/custom-toolbar.component';
+import { AuthService } from '../services/auth/auth';
+import { ProfileService } from '../services/profile/profile';
 
 interface UserProfile {
   name: string;
@@ -30,32 +32,96 @@ interface UserProfile {
   ],
 })
 export class Tab4Page {
-
   user: UserProfile = {
-    name: 'Maria Silva',
-    email: 'maria.silva@email.com',
-    phone: '+351 912 345 678',
-    description: 'Apaixonada por gastronomia portuguesa e sempre à procura de novos sabores autênticos.',
-    initials: 'MS',
-    memberSince: 'Membro desde Janeiro 2024',
+    name: '',
+    email: '',
+    phone: '',
+    description: '',
+    initials: '',
+    memberSince: '',
   };
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private profileService: ProfileService
+  ) {
     addIcons({
       personOutline, mailOutline, callOutline,
       pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
     });
   }
 
- editProfile(): void {
-  this.router.navigate(['/edit-profile']);
+  async ionViewWillEnter(): Promise<void> {
+    await this.authService.loadSession();
+    this.loadUserProfile();
+  }
+
+  loadUserProfile(): void {
+    const currentUser = this.authService.currentUser;
+
+    if (!currentUser) {
+      this.user = {
+        name: '',
+        email: '',
+        phone: '',
+        description: '',
+        initials: '',
+        memberSince: '',
+      };
+      return;
+    }
+
+ const savedProfile = this.profileService.getProfile();
+
+if (savedProfile) {
+  this.user = {
+    name: savedProfile.name,
+    email: savedProfile.email,
+    phone: savedProfile.phone,
+    description: savedProfile.description,
+    initials: this.getInitials(savedProfile.name || savedProfile.email),
+    memberSince: 'Conta ativa',
+  };
+  return;
 }
 
-  logout(): void {
+    const name = currentUser.user_metadata?.['username'] ?? '';
+    const email = currentUser.email ?? '';
+
+    this.user = {
+      name,
+      email,
+      phone: '',
+      description: '',
+      initials: this.getInitials(name || email),
+      memberSince: 'Conta ativa',
+    };
+  }
+
+  getInitials(value: string): string {
+    if (!value) {
+      return '';
+    }
+
+    return value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0].toUpperCase())
+      .join('');
+  }
+
+  editProfile(): void {
+    this.router.navigate(['/edit-profile']);
+  }
+
+  async logout(): Promise<void> {
+    await this.authService.logout();
     this.router.navigate(['/login']);
   }
 
   openAddRestaurant(): void {
-  this.router.navigate(['/add-restaurant']);
+    this.router.navigate(['/add-restaurant']);
   }
 }

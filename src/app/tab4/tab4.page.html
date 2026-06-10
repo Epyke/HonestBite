@@ -14,8 +14,9 @@
       </ion-avatar>
       <div class="avatar-badge">✓</div>
     </div>
-    <h1 class="profile-name">{{ user.name }}</h1>
-    <p class="profile-since">{{ user.memberSince }}</p>
+
+    <h1 class="profile-name">{{ user.name || 'Perfil' }}</h1>
+    <p class="profile-since">{{ user.memberSince || 'Sem dados adicionais' }}</p>
   </div>
 
   <!-- Cartão de informações pessoais -->
@@ -29,7 +30,7 @@
       </div>
       <div class="info-content">
         <span class="info-label">Nome completo</span>
-        <span class="info-value">{{ user.name }}</span>
+        <span class="info-value">{{ user.name || '-' }}</span>
       </div>
     </div>
 
@@ -41,7 +42,7 @@
       </div>
       <div class="info-content">
         <span class="info-label">Email</span>
-        <span class="info-value">{{ user.email }}</span>
+        <span class="info-value">{{ user.email || '-' }}</span>
       </div>
     </div>
 
@@ -53,7 +54,7 @@
       </div>
       <div class="info-content">
         <span class="info-label">Telemóvel</span>
-        <span class="info-value">{{ user.phone }}</span>
+        <span class="info-value">{{ user.phone || '-' }}</span>
       </div>
     </div>
 
@@ -65,7 +66,7 @@
       </div>
       <div class="info-content">
         <span class="info-label">Sobre mim</span>
-        <span class="info-value">{{ user.description }}</span>
+        <span class="info-value">{{ user.description || '-' }}</span>
       </div>
     </div>
 
@@ -75,8 +76,8 @@
   <div class="actions-section">
 
     <ion-button expand="block" fill="outline" class="btn-edit" (click)="openAddRestaurant()">
-    <ion-icon slot="start" name="storefront-outline"></ion-icon>
-    Adicionar o Meu Restaurante
+      <ion-icon slot="start" name="storefront-outline"></ion-icon>
+      Adicionar o Meu Restaurante
     </ion-button>
 
     <ion-button expand="block" class="btn-edit" (click)="editProfile()">

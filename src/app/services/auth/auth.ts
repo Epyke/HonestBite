@@ -29,6 +29,11 @@ export class AuthService {
     this.session = null;
   }
 
+  async loadSession(): Promise<void> {
+  const { data } = await this.supabase.getSession();
+  this.session = data.session;
+}
+
   get currentUser(): User | null {
     return this.session?.user ?? null;
   }
@@ -36,4 +41,5 @@ export class AuthService {
   get isLoggedIn(): boolean {
     return this.session !== null;
   }
+
 }

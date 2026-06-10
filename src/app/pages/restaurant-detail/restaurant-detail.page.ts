@@ -48,6 +48,11 @@ export class RestaurantDetailPage implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.authService.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) this.restaurant = this.restaurantService.getById(id);
     if (!this.restaurant) this.location.back();
@@ -108,4 +113,6 @@ export class RestaurantDetailPage implements OnInit {
       this.ratingsService.submitReview(this.restaurant!.id, data);
     }
   }
+
+  
 }
