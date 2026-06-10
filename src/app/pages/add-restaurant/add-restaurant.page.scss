@@ -1,4 +1,4 @@
-.profile-content {
+﻿.profile-content {
   --background: #e2e8f0;
 }
 
@@ -33,7 +33,7 @@
   place-items: center;
   border-radius: 50%;
   background: #f4f5f8;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
 
   ion-icon {
     font-size: 34px;
@@ -101,7 +101,7 @@
 
 .premium-input.item-has-focus {
   --background: #ffffff;
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-laranjaprinc-rgb), 0.22);
 }
 
 .premium-input.ion-invalid {
@@ -112,11 +112,11 @@
   min-height: 52px;
   margin: 8px 0 0;
   --border-radius: 8px;
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --background-activated: #c85a00;
   --color: #ffffff;
-  --box-shadow: 0 8px 18px rgba(249, 115, 22, 0.18);
+  --box-shadow: 0 8px 18px rgba(var(--ion-color-laranjaprinc-rgb), 0.18);
   font-size: 16px;
   font-weight: 700;
   text-transform: none;

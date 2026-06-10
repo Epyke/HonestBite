@@ -1,4 +1,4 @@
-// ── Fundo ─────────────────────────────────────
+﻿// ── Fundo ─────────────────────────────────────
 .profile-content {
   --background: #e8ecf0;
 }
@@ -22,7 +22,7 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f97316, #fb923c);
+  background: linear-gradient(135deg, var(--ion-color-laranjaprinc), #fb923c);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 1px;
-  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.30);
+  box-shadow: 0 8px 24px rgba(var(--ion-color-laranjaprinc-rgb), 0.30);
 }
 
 .avatar-badge {
@@ -40,7 +40,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #f97316;
+  background: var(--ion-color-laranjaprinc);
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
@@ -110,7 +110,7 @@
 
   ion-icon {
     font-size: 18px;
-    color: #f97316;
+    color: var(--ion-color-laranjaprinc);
   }
 }
 
@@ -151,12 +151,12 @@
 }
 
 .btn-edit {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --background-activated: #c85a00;
   --color: #ffffff;
   --border-radius: 12px;
-  --box-shadow: 0 6px 18px rgba(249, 115, 22, 0.28);
+  --box-shadow: 0 6px 18px rgba(var(--ion-color-laranjaprinc-rgb), 0.28);
   font-size: 15px;
   font-weight: 700;
   text-transform: none;

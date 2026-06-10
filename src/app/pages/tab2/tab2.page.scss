@@ -1,4 +1,4 @@
-// ── Fundo ─────────────────────────────────────
+﻿// ── Fundo ─────────────────────────────────────
 .search-content {
   --background: #e8ecf0;
 }
@@ -29,7 +29,7 @@
   --border-radius: 12px;
   --box-shadow: none;
   --placeholder-color: #9aa5b0;
-  --icon-color: #f97316;
+  --icon-color: var(--ion-color-laranjaprinc);
   --color: #1f2933;
   --clear-button-color: #9aa5b0;
   padding: 0;

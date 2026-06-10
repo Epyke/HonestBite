@@ -1,4 +1,4 @@
-// ── Drag handle ──────────────────────────────
+﻿// ── Drag handle ──────────────────────────────
 .drag-handle {
   width: 36px;
   height: 4px;
@@ -9,7 +9,7 @@
 
 // ── Header ───────────────────────────────────
 .review-toolbar {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --color: #ffffff;
   --border-color: transparent;
 }
@@ -45,7 +45,7 @@
   gap: 6px;
   background: #fff1e6;
   border: 1px solid #fed7aa;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
   font-size: 13px;
   font-weight: 700;
   border-radius: 20px;
@@ -63,7 +63,7 @@
   margin: 16px;
   border-radius: 16px;
   border: 1px solid #fed7aa;
-  box-shadow: 0 2px 12px rgba(249, 115, 22, 0.08);
+  box-shadow: 0 2px 12px rgba(var(--ion-color-laranjaprinc-rgb), 0.08);
 }
 
 .rating-label {
@@ -96,7 +96,7 @@
   margin: 4px 0 0;
   font-size: 14px;
   font-weight: 700;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
 }
 
 // ── Form section ──────────────────────────────
@@ -130,8 +130,8 @@
   transition: border-color 0.2s ease;
 
   &:focus-within {
-    border-color: #f97316;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+    border-color: var(--ion-color-laranjaprinc);
+    box-shadow: 0 0 0 3px rgba(var(--ion-color-laranjaprinc-rgb), 0.12);
   }
 }
 
@@ -142,7 +142,7 @@
 
 .field-icon {
   font-size: 18px;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
   flex-shrink: 0;
   margin-right: 8px;
 }
@@ -170,13 +170,13 @@
 
 // ── Submit button ─────────────────────────────
 .submit-btn {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --background-disabled: #fed7aa;
   --color: #ffffff;
   --color-disabled: #ffffff;
   --border-radius: 14px;
-  --box-shadow: 0 6px 20px rgba(249, 115, 22, 0.32);
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-laranjaprinc-rgb), 0.32);
   font-size: 15px;
   font-weight: 700;
   text-transform: none;

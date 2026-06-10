@@ -8,6 +8,8 @@ import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-t
 import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
 import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
 import { Categories, Category } from '../../services/categories/categories';
+import {ScreenOrientation, OrientationLockOptions, OrientationLockType} from '@capacitor/screen-orientation';
+import {ViewWillEnter} from '@ionic/angular'
 
 @Component({
   selector: 'app-tab1',
@@ -24,7 +26,7 @@ import { Categories, Category } from '../../services/categories/categories';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class Tab1Page {
+export class Tab1Page implements ViewWillEnter {
 
   selectedCategory = 'todos';
   categories: Category[] = [];
@@ -59,5 +61,11 @@ export class Tab1Page {
 
   selectCategory(value: string): void {
     this.selectedCategory = value;
+  }
+
+  async ionViewWillEnter(): Promise<void> {
+    const orientation: OrientationLockType = 'portrait';
+    const options: OrientationLockOptions = { orientation };
+    await ScreenOrientation.lock(options);
   }
 }

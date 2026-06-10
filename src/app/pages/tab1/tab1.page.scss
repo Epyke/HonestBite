@@ -1,4 +1,4 @@
-// ── Fundo ─────────────────────────────────────
+﻿// ── Fundo ─────────────────────────────────────
 .home-content {
   --background: #e8ecf0;
 }
@@ -51,10 +51,10 @@ ion-chip {
   transition: all 0.2s ease;
 
   &.selected {
-    --background: #f97316;
+    --background: var(--ion-color-laranjaprinc);
     --color: #ffffff;
-    border-color: #f97316;
-    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
+    border-color: var(--ion-color-laranjaprinc);
+    box-shadow: 0 4px 14px rgba(var(--ion-color-laranjaprinc-rgb), 0.28);
   }
 }
 
@@ -87,7 +87,7 @@ ion-chip {
 
 .section-icon {
   font-size: 18px;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
 }
 
 .section-count {

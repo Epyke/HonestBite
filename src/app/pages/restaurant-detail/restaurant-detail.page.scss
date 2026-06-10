@@ -1,4 +1,4 @@
-// Shared base for circular overlay buttons (.back-btn, .fav-btn)
+﻿// Shared base for circular overlay buttons (.back-btn, .fav-btn)
 .hero-btn {
   --padding-start: 0;
   --padding-end: 0;
@@ -24,11 +24,11 @@
 }
 
 .menu-btn {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --color: #ffffff;
   --border-radius: 20px;
-  --box-shadow: 0 3px 10px rgba(249, 115, 22, 0.30);
+  --box-shadow: 0 3px 10px rgba(var(--ion-color-laranjaprinc-rgb), 0.30);
   --padding-start: 14px;
   --padding-end: 14px;
   height: 34px;
@@ -39,7 +39,7 @@
 }
 
 .maps-btn {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --color: #ffffff;
   --border-radius: 50%;
@@ -108,7 +108,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #f97316;
+  background: var(--ion-color-laranjaprinc);
   color: #ffffff;
   border-radius: 22px;
   padding: 6px 13px;
@@ -124,7 +124,7 @@
   display: inline-flex;
   align-items: center;
   background: #fff7ed;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
   border-radius: 8px;
   padding: 5px 11px;
   font-size: 12px;
@@ -150,7 +150,7 @@
 
   ion-icon {
     font-size: 17px;
-    color: #f97316;
+    color: var(--ion-color-laranjaprinc);
     flex-shrink: 0;
   }
 }
@@ -199,7 +199,7 @@
 }
 
 .write-review-btn {
-  --background: #f97316;
+  --background: var(--ion-color-laranjaprinc);
   --background-hover: #ea6a00;
   --background-activated: #224f44;
   --color: #ffffff;
@@ -234,7 +234,7 @@
   color: #1f2933;
   margin: 0 0 14px;
 
-  ion-icon { color: #f97316; font-size: 20px; }
+  ion-icon { color: var(--ion-color-laranjaprinc); font-size: 20px; }
 }
 
 .schedule-list {
@@ -252,8 +252,8 @@
 
   &.today {
     background: #f0f7f4;
-    .schedule-day   { color: #f97316; font-weight: 700; }
-    .schedule-hours { color: #f97316; font-weight: 700; }
+    .schedule-day   { color: var(--ion-color-laranjaprinc); font-weight: 700; }
+    .schedule-hours { color: var(--ion-color-laranjaprinc); font-weight: 700; }
   }
 }
 
