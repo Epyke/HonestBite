@@ -42,4 +42,10 @@ export class userService {
   get isLoggedIn(): boolean {
     return this.session !== null;
   }
+
+  //Carregar a sessão
+  async loadSession(): Promise<void> {
+  const { data } = await this.supabase.getSession();
+  this.session = data.session;
+  }
 }

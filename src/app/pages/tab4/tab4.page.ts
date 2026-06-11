@@ -43,13 +43,14 @@ export class Tab4Page implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.userService.loadSession();
     if(this.isLoggedIn){
       const currentUser = this.userService.currentUser;
       this.user = {
         name: currentUser?.user_metadata['username'],
         email: currentUser?.email ?? '',
-        memberSince: currentUser?.created_at ?? '',
+        memberSince: currentUser?.created_at.slice(0, 10) ?? '',
       }
     }
   }

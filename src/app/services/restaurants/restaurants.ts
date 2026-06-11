@@ -9,7 +9,6 @@ export interface Schedule {
 export interface Review {
   id: string;
   userName: string;
-  initials: string;
   rating: number;
   date: string;
   comment: string;
@@ -34,10 +33,16 @@ export interface Restaurant {
 
 @Injectable({ providedIn: 'root' })
 export class Restaurants {
+  readonly categories = [
+    'Tradicional', 'Petiscos', 'Grelhados',
+    'Marisqueira', 'Regional', 'Italiana', 'Japonesa', 'Vegana', 'Outro',
+  ];
+
   private restaurants: Restaurant[] = restaurantsData;
 
   getAll(): Restaurant[] { return this.restaurants; }
   getById(id: string): Restaurant | undefined {
     return this.restaurants.find(r => r.id === id);
   }
+
 }
