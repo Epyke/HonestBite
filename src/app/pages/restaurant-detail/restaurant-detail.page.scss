@@ -76,7 +76,7 @@
 
 .back-btn-wrapper {
   position: absolute;
-  top: 14px;
+  top: calc(14px + env(safe-area-inset-top));
   left: 8px;
 }
 
@@ -216,7 +216,7 @@
 // ── Favorite button ───────────────────────────
 .fav-btn-wrapper {
   position: absolute;
-  top: 14px;
+  top: calc(14px + env(safe-area-inset-top));
   right: 8px;
 }
 

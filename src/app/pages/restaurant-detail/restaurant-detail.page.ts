@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonContent, IonIcon, IonButton, IonButtons, IonFooter,
-  IonGrid, IonRow, IonCol
+  IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, ReviewCardComponent],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, ReviewCardComponent],
 })
 export class RestaurantDetailPage implements OnInit {
   restaurant?: Restaurant;
