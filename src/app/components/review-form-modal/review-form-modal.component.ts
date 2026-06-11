@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-  IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonIcon,
+  IonContent, IonTextarea, IonIcon,
   ModalController, AlertController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -10,7 +10,7 @@ import {
   star, starOutline, closeOutline,
   personOutline, checkmarkOutline, restaurantOutline,
 } from 'ionicons/icons';
-import { AuthService } from '../../services/auth/auth';
+import { userService } from '../../services/user/user';
 
 @Component({
   selector: 'app-review-form-modal',
@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth/auth';
   imports: [
     FormsModule,
     IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-    IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonIcon,
+    IonContent, IonTextarea, IonIcon,
   ],
   templateUrl: './review-form-modal.component.html',
   styleUrls: ['./review-form-modal.component.scss'],
@@ -35,7 +35,7 @@ export class ReviewFormModalComponent {
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private authService: AuthService,
+    private authService: userService,
   ) {
     addIcons({ star, starOutline, closeOutline, personOutline, checkmarkOutline, restaurantOutline });
     this.userName = this.authService.currentUser?.user_metadata?.['username'] ?? '';

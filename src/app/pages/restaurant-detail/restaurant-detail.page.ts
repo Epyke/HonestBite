@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonContent, IonIcon, IonButton, IonButtons, IonFooter,
-  IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol
+  IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -18,7 +18,7 @@ import { RatingsService } from '../../services/ratings/ratings';
 import { ModalController } from '@ionic/angular/standalone';
 import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
 import { ReviewFormModalComponent } from '../../components/review-form-modal/review-form-modal.component';
-import { AuthService } from '../../services/auth/auth';
+import { userService } from '../../services/user/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, ReviewCardComponent],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, ReviewCardComponent],
 })
 export class RestaurantDetailPage implements OnInit {
   restaurant?: Restaurant;
@@ -38,7 +38,7 @@ export class RestaurantDetailPage implements OnInit {
     private ratingsService: RatingsService,
     private location: Location,
     private modalCtrl: ModalController,
-    private authService: AuthService,
+    private authService: userService,
     private router: Router,
   ) {
     addIcons({

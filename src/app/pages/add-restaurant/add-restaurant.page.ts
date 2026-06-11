@@ -5,13 +5,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import {
   IonButton, IonButtons, IonCard, IonContent, IonIcon,
   IonInput, IonItem, IonList, IonSelect, IonSelectOption,
-  IonTextarea, IonLabel,
+  IonTextarea,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   restaurantOutline, locationOutline, pricetagOutline,
   arrowBackOutline, timeOutline, listOutline,
 } from 'ionicons/icons';
+import { Restaurants } from 'src/app/services/restaurants/restaurants';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -21,19 +22,15 @@ import {
   imports: [
     CommonModule, ReactiveFormsModule,
     IonContent, IonCard, IonList, IonItem, IonInput, IonIcon,
-    IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea, IonLabel,
+    IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea,
   ],
 })
 export class AddRestaurantPage {
   form: FormGroup;
   submitted = false;
+  categories = this.restaurants.categories;
 
-  categories = [
-    'Tradicional', 'Petiscos', 'Grelhados',
-    'Marisqueira', 'Regional', 'Italiana', 'Japonesa', 'Vegana', 'Outro',
-  ];
-
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private restaurants: Restaurants) {
     addIcons({ restaurantOutline, locationOutline, pricetagOutline, arrowBackOutline, timeOutline, listOutline });
 
     this.form = this.fb.group({
@@ -52,7 +49,6 @@ export class AddRestaurantPage {
     this.submitted = true;
     if (this.form.valid) {
       console.log('Novo restaurante:', this.form.value);
-      // TODO: call your restaurants service to save
     }
   }
 

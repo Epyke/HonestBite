@@ -1,4 +1,4 @@
-.top-div {
+﻿.top-div {
   position: relative;
   display: flex;
   align-items: center;
@@ -9,35 +9,6 @@ ion-title {
   text-align: center;
   font-size: 18px;
   font-weight: 800;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
   letter-spacing: -0.2px;
-}
-
-ion-avatar {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  left: 16px;
-  border: 2px solid #f0f2f5;
-}
-
-ion-button {
-  position: absolute;
-  right: 5px;
-  --color: #1f2933;
-}
-
-.notif-wrapper {
-  position: relative;
-  display: flex;
-  font-size: 24px;
-  color: #1f2933;
-}
-
-.notif-badge {
-  position: absolute;
-  top: -4px;
-  right: -6px;
-  font-size: 0.6rem;
-  padding: 2px 4px;
 }

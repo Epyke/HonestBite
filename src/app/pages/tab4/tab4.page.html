@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <custom-toolbar></custom-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="profile-content">
+
+  @if (isLoggedIn){
+    <!-- Perfil -->
+    <div class="profile-hero">
+      <div class="avatar-wrapper">
+        <ion-avatar class="avatar">
+          <img alt="Foto de perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </div>
+      <h1 class="profile-name">{{ user.name }}</h1>
+      <p class="profile-since">{{ user.memberSince }}</p>
+    </div>
+
+    <!-- Informações pessoais -->
+    <div class="profile-card">
+
+      <h3 class="card-section-title">Informações Pessoais</h3>
+
+      <div class="info-row">
+        <div class="info-icon-wrapper">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Nome completo</span>
+          <span class="info-value">{{ user.name }}</span>
+        </div>
+      </div>
+
+      <div class="info-divider"></div>
+
+      <div class="info-row">
+        <div class="info-icon-wrapper">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ user.email }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="actions-section">
+
+      <ion-button expand="block" class="btn-edit" (click)="openAddRestaurant()">
+      <ion-icon slot="start" name="storefront-outline"></ion-icon>
+      Adicionar o Meu Restaurante
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" class="btn-logout" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        Terminar Sessão
+      </ion-button>
+
+    </div>
+  }
+  @else {
+    <div class="guest-section">
+      <ion-icon name="person-outline" class="guest-icon"></ion-icon>
+      <h2 class="guest-title">Bem-vindo ao HonestBite</h2>
+      <p class="guest-subtitle">Inicia sessão ou cria uma conta para acederes ao teu perfil.</p>
+
+      <ion-button expand="block" class="btn-guest-login" (click)="login()">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Iniciar Sessão
+      </ion-button>
+
+      <ion-button expand="block" class="btn-guest-login" (click)="register()">
+        Criar conta
+      </ion-button>
+    </div>
+  }
+
+</ion-content>

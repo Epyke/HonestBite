@@ -1,2 +1,20 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+:root {
+	--ion-color-laranjaprinc: #f97316;
+	--ion-color-laranjaprinc-rgb: 249,115,22;
+	--ion-color-laranjaprinc-contrast: #000000;
+	--ion-color-laranjaprinc-contrast-rgb: 0,0,0;
+	--ion-color-laranjaprinc-shade: #db6513;
+	--ion-color-laranjaprinc-tint: #fa812d;
+}
+
+.ion-color-laranjaprinc {
+	--ion-color-base: var(--ion-color-laranjaprinc);
+	--ion-color-base-rgb: var(--ion-color-laranjaprinc-rgb);
+	--ion-color-contrast: var(--ion-color-laranjaprinc-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-laranjaprinc-contrast-rgb);
+	--ion-color-shade: var(--ion-color-laranjaprinc-shade);
+	--ion-color-tint: var(--ion-color-laranjaprinc-tint);
+}
