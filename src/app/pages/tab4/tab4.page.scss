@@ -165,6 +165,61 @@
   margin: 0;
 }
 
+// ── Guest (não autenticado) ───────────────────
+.guest-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+  height: 100%;
+}
+
+.guest-icon {
+  font-size: 64px;
+  color: var(--ion-color-laranjaprinc);
+  margin-bottom: 20px;
+}
+
+.guest-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f2933;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.guest-subtitle {
+  font-size: 14px;
+  color: #9aa5b0;
+  text-align: center;
+  margin: 0 0 36px;
+  line-height: 1.6;
+}
+
+.btn-guest-login {
+  --border-radius: 12px;
+  --border-color: var(--ion-color-laranjaprinc);
+  --color: var(--ion-color-laranjaprinc);
+  --background: transparent;
+  --background-hover: #fff7ed;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  height: 52px;
+  width: 100%;
+  margin: 0 0 8px;
+}
+
+.btn-guest-register {
+  --color: var(--ion-color-laranjaprinc);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .btn-logout {
   --border-radius: 12px;
   --border-color: #e0e4e9;

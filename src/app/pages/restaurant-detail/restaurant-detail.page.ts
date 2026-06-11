@@ -18,7 +18,7 @@ import { RatingsService } from '../../services/ratings/ratings';
 import { ModalController } from '@ionic/angular/standalone';
 import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
 import { ReviewFormModalComponent } from '../../components/review-form-modal/review-form-modal.component';
-import { AuthService } from '../../services/auth/auth';
+import { userService } from '../../services/user/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -38,7 +38,7 @@ export class RestaurantDetailPage implements OnInit {
     private ratingsService: RatingsService,
     private location: Location,
     private modalCtrl: ModalController,
-    private authService: AuthService,
+    private authService: userService,
     private router: Router,
   ) {
     addIcons({

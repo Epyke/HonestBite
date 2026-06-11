@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar
 } from '@ionic/angular/standalone';
@@ -6,16 +6,15 @@ import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
   personOutline, mailOutline, callOutline,
-  pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
+  pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
 } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
+import { userService } from 'src/app/services/user/user';
+import { User } from '@supabase/supabase-js';
 
 interface UserProfile {
   name: string;
   email: string;
-  phone: string;
-  description: string;
-  initials: string;
   memberSince: string;
 }
 
@@ -29,33 +28,53 @@ interface UserProfile {
     CustomToolbarComponent,
   ],
 })
-export class Tab4Page {
+export class Tab4Page implements OnInit {
 
-  user: UserProfile = {
-    name: 'Maria Silva',
-    email: 'maria.silva@email.com',
-    phone: '+351 912 345 678',
-    description: 'Apaixonada por gastronomia portuguesa e sempre à procura de novos sabores autênticos.',
-    initials: 'MS',
-    memberSince: 'Membro desde Janeiro 2024',
-  };
+  public user:UserProfile = {
+    name: '',
+    email: '',
+    memberSince: '',
+  }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: userService) {
     addIcons({
       personOutline, mailOutline, callOutline,
-      pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline
+      pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
     });
   }
 
- editProfile(): void {
-  this.router.navigateByUrl('/edit-profile');
-}
+  ngOnInit(): void {
+    if(this.isLoggedIn){
+      const currentUser = this.userService.currentUser;
+      this.user = {
+        name: currentUser?.user_metadata['username'],
+        email: currentUser?.email ?? '',
+        memberSince: currentUser?.created_at ?? '',
+      }
+    }
+  }
 
-  logout(): void {
+  editProfile(): void {
+    this.router.navigateByUrl('/edit-profile');
+  }
+
+  login(): void {
     this.router.navigateByUrl('/login');
   }
 
+  register(): void {
+    this.router.navigateByUrl('/register');
+  }
+
   openAddRestaurant(): void {
-  this.router.navigate(['/add-restaurant']);
+    this.router.navigate(['/add-restaurant']);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
+
+  get currentUser(): User | null {
+    return this.userService.currentUser;
   }
 }

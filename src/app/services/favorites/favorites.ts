@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
-  private favoriteIds: Set<string> = new Set(['4']); // Maré Viva como exemplo inicial
+  private favoriteIds: Set<string> = new Set(['4']);
 
   isFavorite(id: string): boolean {
     return this.favoriteIds.has(id);

@@ -6,88 +6,81 @@
 
 <ion-content [fullscreen]="true" class="profile-content">
 
-  <!-- Hero do perfil -->
-  <div class="profile-hero">
-    <div class="avatar-wrapper">
-      <ion-avatar class="avatar">
-        <img alt="Foto de perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-    </div>
-    <h1 class="profile-name">{{ user.name }}</h1>
-    <p class="profile-since">{{ user.memberSince }}</p>
-  </div>
-
-  <!-- Cartão de informações pessoais -->
-  <div class="profile-card">
-
-    <h3 class="card-section-title">Informações Pessoais</h3>
-
-    <div class="info-row">
-      <div class="info-icon-wrapper">
-        <ion-icon name="person-outline"></ion-icon>
+  @if (isLoggedIn){
+    <!-- Perfil -->
+    <div class="profile-hero">
+      <div class="avatar-wrapper">
+        <ion-avatar class="avatar">
+          <img alt="Foto de perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
       </div>
-      <div class="info-content">
-        <span class="info-label">Nome completo</span>
-        <span class="info-value">{{ user.name }}</span>
-      </div>
+      <h1 class="profile-name">{{ user.name }}</h1>
+      <p class="profile-since">{{ user.memberSince }}</p>
     </div>
 
-    <div class="info-divider"></div>
+    <!-- Informações pessoais -->
+    <div class="profile-card">
 
-    <div class="info-row">
-      <div class="info-icon-wrapper">
-        <ion-icon name="mail-outline"></ion-icon>
-      </div>
-      <div class="info-content">
-        <span class="info-label">Email</span>
-        <span class="info-value">{{ user.email }}</span>
-      </div>
-    </div>
+      <h3 class="card-section-title">Informações Pessoais</h3>
 
-    <div class="info-divider"></div>
-
-    <div class="info-row">
-      <div class="info-icon-wrapper">
-        <ion-icon name="call-outline"></ion-icon>
+      <div class="info-row">
+        <div class="info-icon-wrapper">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Nome completo</span>
+          <span class="info-value">{{ user.name }}</span>
+        </div>
       </div>
-      <div class="info-content">
-        <span class="info-label">Telemóvel</span>
-        <span class="info-value">{{ user.phone }}</span>
+
+      <div class="info-divider"></div>
+
+      <div class="info-row">
+        <div class="info-icon-wrapper">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ user.email }}</span>
+        </div>
       </div>
     </div>
 
-    <div class="info-divider"></div>
+    <!-- Botões -->
+    <div class="actions-section">
 
-    <div class="info-row align-top">
-      <div class="info-icon-wrapper">
-        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-      </div>
-      <div class="info-content">
-        <span class="info-label">Sobre mim</span>
-        <span class="info-value">{{ user.description }}</span>
-      </div>
+      <ion-button expand="block" fill="outline" class="btn-edit" (click)="openAddRestaurant()">
+      <ion-icon slot="start" name="storefront-outline"></ion-icon>
+      Adicionar o Meu Restaurante
+      </ion-button>
+
+      <ion-button expand="block" class="btn-edit" (click)="editProfile()">
+        Editar Perfil
+        <ion-icon slot="end" name="pencil-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" class="btn-logout">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        Terminar Sessão
+      </ion-button>
+
     </div>
+  }
+  @else {
+    <div class="guest-section">
+      <ion-icon name="person-outline" class="guest-icon"></ion-icon>
+      <h2 class="guest-title">Bem-vindo ao HonestBite</h2>
+      <p class="guest-subtitle">Inicia sessão ou cria uma conta para acederes ao teu perfil.</p>
 
-  </div>
+      <ion-button expand="block" fill="outline" class="btn-guest-login" (click)="login()">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Iniciar Sessão
+      </ion-button>
 
-  <!-- Botões de ação -->
-  <div class="actions-section">
-
-    <ion-button expand="block" fill="outline" class="btn-edit" (click)="openAddRestaurant()">
-    <ion-icon slot="start" name="storefront-outline"></ion-icon>
-    Adicionar o Meu Restaurante
-    </ion-button>
-
-    <ion-button expand="block" class="btn-edit" (click)="editProfile()">
-      Editar Perfil
-      <ion-icon slot="end" name="pencil-outline"></ion-icon>
-    </ion-button>
-
-    <ion-button expand="block" fill="outline" class="btn-logout" (click)="logout()">
-      <ion-icon slot="end" name="log-out-outline"></ion-icon>
-      Terminar Sessão
-    </ion-button>
-
-  </div>
+      <ion-button expand="block" fill="clear" class="btn-guest-register" (click)="register()">
+        Criar conta
+      </ion-button>
+    </div>
+  }
 
 </ion-content>
