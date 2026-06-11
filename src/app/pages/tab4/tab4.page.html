@@ -59,7 +59,7 @@
         <ion-icon slot="end" name="pencil-outline"></ion-icon>
       </ion-button>
 
-      <ion-button expand="block" fill="outline" class="btn-logout">
+      <ion-button expand="block" fill="outline" class="btn-logout" (click)="logout()">
         <ion-icon slot="end" name="log-out-outline"></ion-icon>
         Terminar Sessão
       </ion-button>
@@ -72,7 +72,7 @@
       <h2 class="guest-title">Bem-vindo ao HonestBite</h2>
       <p class="guest-subtitle">Inicia sessão ou cria uma conta para acederes ao teu perfil.</p>
 
-      <ion-button expand="block" fill="outline" class="btn-guest-login" (click)="login()">
+      <ion-button expand="block" class="btn-guest-login" (click)="login()">
         <ion-icon slot="start" name="log-in-outline"></ion-icon>
         Iniciar Sessão
       </ion-button>

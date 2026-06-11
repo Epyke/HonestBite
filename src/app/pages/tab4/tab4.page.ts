@@ -62,6 +62,12 @@ export class Tab4Page implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  logout(): void {
+    this.userService.logout();
+    this.router.navigateByUrl('/');
+  }
+
+
   register(): void {
     this.router.navigateByUrl('/register');
   }
