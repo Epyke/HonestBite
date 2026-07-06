@@ -1,11 +1,11 @@
-ion-toolbar {
+﻿ion-toolbar {
   --background: #ffffff;
   --color: #1f2933;
 }
 
 ion-title {
   font-weight: 800;
-  color: #f97316;
+  color: var(--ion-color-laranjaprinc);
 }
 
 .menu-content {

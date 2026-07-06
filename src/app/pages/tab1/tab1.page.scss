@@ -1,0 +1,144 @@
+﻿// ── Fundo ─────────────────────────────────────
+.home-content {
+  --background: #e8ecf0;
+}
+
+// ── Saudação ──────────────────────────────────
+.greeting-section {
+  padding: 22px 20px 16px;
+}
+
+.greeting-title {
+  margin: 0 0 4px;
+  font-size: 23px;
+  font-weight: 800;
+  color: #1f2933;
+  letter-spacing: -0.3px;
+}
+
+.greeting-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #7a8794;
+}
+
+// ── Categorias ────────────────────────────────
+.categories-section {
+  padding-bottom: 8px;
+}
+
+.chips-swiper {
+  padding: 4px 20px 10px !important;
+}
+
+.chip-slide {
+  width: auto !important;
+}
+
+ion-chip {
+  --background: #ffffff;
+  --color: #5f6b76;
+  border-radius: 22px;
+  font-size: 13px;
+  font-weight: 600;
+  height: 38px;
+  padding: 0 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+
+  &.selected {
+    --background: var(--ion-color-laranjaprinc);
+    --color: #ffffff;
+    border-color: var(--ion-color-laranjaprinc);
+    box-shadow: 0 4px 14px rgba(var(--ion-color-laranjaprinc-rgb), 0.28);
+  }
+}
+
+.chip-icon {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+// ── Secções ───────────────────────────────────
+.feed-section {
+  padding: 6px 0 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #1f2933;
+  letter-spacing: -0.2px;
+  flex: 1;
+}
+
+.section-icon {
+  font-size: 18px;
+  color: var(--ion-color-laranjaprinc);
+}
+
+.section-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9aa5b0;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2px 9px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+// ── Swiper popular ────────────────────────────
+.popular-swiper {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 4px !important;
+}
+
+// ── Lista vertical ────────────────────────────
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 16px;
+}
+
+// ── Estado vazio ──────────────────────────────
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin: 0 0 10px;
+}
+
+.empty-text {
+  margin: 0;
+  font-size: 15px;
+  color: #9aa5b0;
+}
+
+.popular-swiper {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 4px !important;
+
+  swiper-slide {  // ← add this block
+    height: auto;
+    align-self: stretch;
+  }
+}

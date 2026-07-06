@@ -27,7 +27,9 @@
           <ion-item class="premium-input" [class.ion-invalid]="submitted && form.get('category')?.invalid">
             <ion-icon name="list-outline" slot="start"></ion-icon>
             <ion-select label="Categoria" label-placement="floating" formControlName="category">
-              <ion-select-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</ion-select-option>
+              @for (cat of categories; track cat) {
+                <ion-select-option [value]="cat">{{ cat }}</ion-select-option>
+              }
             </ion-select>
           </ion-item>
 

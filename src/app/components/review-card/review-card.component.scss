@@ -1,4 +1,4 @@
-.review-card {
+﻿.review-card {
   background: #f8f9fb;
   border-radius: 12px;
   padding: 15px;
@@ -17,7 +17,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f97316, #fb923c);
+  background: linear-gradient(135deg, var(--ion-color-laranjaprinc), #fb923c);
   color: #ffffff;
   display: flex;
   align-items: center;

@@ -11,7 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth';
+import { userService } from 'src/app/services/user/user';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,7 @@ export class RegisterPage {
   loading = false;
   registered = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: userService, private router: Router) {
     this.registerForm = this.formBuilder.group(
       {
         nomeCompleto: ['', [Validators.required, Validators.minLength(2)]],

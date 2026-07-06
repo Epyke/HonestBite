@@ -1,3 +1,11 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="detail-content" [fullscreen]="true">
   @if (restaurant) {
 
@@ -5,13 +13,6 @@
     <div class="hero-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
       <div class="hero-gradient"></div>
-
-      <!-- Botão voltar -->
-      <ion-buttons class="back-btn-wrapper">
-        <ion-button shape="round" fill="clear" class="back-btn" (click)="goBack()">
-          <ion-icon name="arrow-back-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
 
       <!-- Botão favorito -->
       <ion-buttons class="fav-btn-wrapper">

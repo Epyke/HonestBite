@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonIcon } from '@ionic/angular/standalone';
+import { IonIcon, IonAvatar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { starSharp } from 'ionicons/icons';
 import { Review } from '../../services/restaurants/restaurants';
@@ -9,7 +9,7 @@ import { Review } from '../../services/restaurants/restaurants';
   templateUrl: 'review-card.component.html',
   styleUrls: ['review-card.component.scss'],
   standalone: true,
-  imports: [IonIcon],
+  imports: [IonIcon, IonAvatar],
 })
 export class ReviewCardComponent {
   @Input() review!: Review;
