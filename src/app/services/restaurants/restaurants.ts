@@ -38,11 +38,27 @@ export class Restaurants {
     'Marisqueira', 'Regional', 'Italiana', 'Japonesa', 'Vegana', 'Outro',
   ];
 
+  private readonly storageKey = 'honestbite_created_restaurants';
   private restaurants: Restaurant[] = restaurantsData;
 
-  getAll(): Restaurant[] { return this.restaurants; }
-  getById(id: string): Restaurant | undefined {
-    return this.restaurants.find(r => r.id === id);
+  getAll(): Restaurant[] {
+    return [...this.restaurants, ...this.getCreatedRestaurants()];
   }
 
+  getById(id: string): Restaurant | undefined {
+    return this.getAll().find((restaurant) => restaurant.id === id);
+  }
+
+  addRestaurant(restaurant: Restaurant): void {
+    const createdRestaurants = this.getCreatedRestaurants();
+    createdRestaurants.push(restaurant);
+
+    // Fallback local até a integração final com Supabase estar concluída.
+    localStorage.setItem(this.storageKey, JSON.stringify(createdRestaurants));
+  }
+
+  private getCreatedRestaurants(): Restaurant[] {
+    const storedRestaurants = localStorage.getItem(this.storageKey);
+    return storedRestaurants ? JSON.parse(storedRestaurants) : [];
+  }
 }
