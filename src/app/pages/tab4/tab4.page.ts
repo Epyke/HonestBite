@@ -9,14 +9,9 @@ import {
   pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
 } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
-import { userService } from 'src/app/services/user/user';
-import { User } from '@supabase/supabase-js';
-
-interface UserProfile {
-  name: string;
-  email: string;
-  memberSince: string;
-}
+import { AuthService } from 'src/app/services/auth/auth';
+import { CurrentUser } from 'src/app/models/user.model';
+import { UserSession } from 'src/app/services/auth/user-session';
 
 @Component({
   selector: 'app-tab4',
@@ -28,31 +23,13 @@ interface UserProfile {
     CustomToolbarComponent,
   ],
 })
-export class Tab4Page implements OnInit {
+export class Tab4Page {
 
-  public user:UserProfile = {
-    name: '',
-    email: '',
-    memberSince: '',
-  }
-
-  constructor(private router: Router, private userService: userService) {
+  constructor(private router: Router, private authService: AuthService) {
     addIcons({
       personOutline, mailOutline, callOutline,
       pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
     });
-  }
-
-  async ngOnInit(): Promise<void> {
-    await this.userService.loadSession();
-    if(this.isLoggedIn){
-      const currentUser = this.userService.currentUser;
-      this.user = {
-        name: currentUser?.user_metadata['username'],
-        email: currentUser?.email ?? '',
-        memberSince: currentUser?.created_at.slice(0, 10) ?? '',
-      }
-    }
   }
 
   editProfile(): void {
@@ -64,10 +41,9 @@ export class Tab4Page implements OnInit {
   }
 
   logout(): void {
-    this.userService.logout();
+    UserSession.clear();
     this.router.navigateByUrl('/');
   }
-
 
   register(): void {
     this.router.navigateByUrl('/register');
@@ -77,11 +53,7 @@ export class Tab4Page implements OnInit {
     this.router.navigate(['/add-restaurant']);
   }
 
-  get isLoggedIn(): boolean {
-    return this.userService.isLoggedIn;
-  }
-
-  get currentUser(): User | null {
-    return this.userService.currentUser;
-  }
+  get user(): CurrentUser | null { return UserSession.get(); }
+  get isLoggedIn(): boolean { return UserSession.isLoggedIn; }
+  get memberSince(): string {return this.user?.createdAt?.slice(0, 10).split('-').reverse().join('/') ?? '';}
 }

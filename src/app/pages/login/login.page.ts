@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { userService } from 'src/app/services/user/user';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,12 @@ import { userService } from 'src/app/services/user/user';
 export class LoginPage {
   loginForm: FormGroup;
   mostrarPassword = false;
+  errorMessage = '';
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: userService, private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+     private authService: AuthService,
+      private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,9 +40,6 @@ export class LoginPage {
     this.mostrarPassword = !this.mostrarPassword;
   }
 
-  errorMessage = '';
-  loading = false;
-
   async fazerLogin(): Promise<void> {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
@@ -47,7 +49,7 @@ export class LoginPage {
     this.errorMessage = '';
     try {
       const { email, password } = this.loginForm.value;
-      await this.authService.login(email, password);
+      await firstValueFrom(this.authService.login({ email, password }));
       this.router.navigateByUrl('/');
     } catch (err: any) {
       this.errorMessage = 'E-mail ou palavra-passe incorretos.';

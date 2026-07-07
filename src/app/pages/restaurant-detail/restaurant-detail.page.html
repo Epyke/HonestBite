@@ -7,9 +7,11 @@
 </ion-header>
 
 <ion-content class="detail-content" [fullscreen]="true">
-  @if (restaurant) {
-
-    <!-- Hero com botões sobrepostos -->
+  @if (isLoading){
+    <div class="spinner-wrapper">
+      <ion-spinner name="crescent" color="laranjaprinc"></ion-spinner>
+    </div>
+  } @else if (restaurant){
     <div class="hero-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
       <div class="hero-gradient"></div>
@@ -24,7 +26,6 @@
 
     <!-- Cartão de detalhe flutuante -->
     <div class="detail-card">
-
       
       <ion-grid class="detail-title-grid">
         <ion-row class="ion-align-items-center">
@@ -56,11 +57,11 @@
       <div class="detail-meta">
         <span class="meta-item">
           <ion-icon name="location-outline"></ion-icon>
-          {{ restaurant.city }} · {{ restaurant.distance }}
+          {{ restaurant.city }}
         </span>
         <span class="meta-item">
           <ion-icon name="cash-outline"></ion-icon>
-          Preço médio: {{ restaurant.avgPrice }}
+          Preço médio: {{ restaurant.avgPrice }}€
         </span>
       </div>
 
@@ -105,8 +106,10 @@
 </ion-content>
 
 <ion-footer class="detail-footer">
-  <ion-button expand="block" class="write-review-btn" (click)="openReviewForm()">
-    <ion-icon slot="end" name="create-outline"></ion-icon>
-    Escrever uma Avaliação
-  </ion-button>
+  @if (restaurant) {
+    <ion-button expand="block" class="write-review-btn" (click)="openReviewForm()">
+      <ion-icon slot="end" name="create-outline"></ion-icon>
+      Escrever uma Avaliação
+    </ion-button>
+  }
 </ion-footer>

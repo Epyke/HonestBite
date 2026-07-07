@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
@@ -12,7 +12,9 @@ import {
   restaurantOutline, locationOutline, pricetagOutline,
   arrowBackOutline, timeOutline, listOutline,
 } from 'ionicons/icons';
-import { Restaurants } from 'src/app/services/restaurants/restaurants';
+import { RestaurantsService } from 'src/app/services/restaurants/restaurants';
+import { CategoriesService } from 'src/app/services/categories/categories';
+import { Category } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -25,12 +27,12 @@ import { Restaurants } from 'src/app/services/restaurants/restaurants';
     IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea,
   ],
 })
-export class AddRestaurantPage {
+export class AddRestaurantPage implements OnInit {
   form: FormGroup;
   submitted = false;
-  categories = this.restaurants.categories;
+  categories: Category[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router, private restaurants: Restaurants) {
+  constructor(private fb: FormBuilder, private router: Router, private categoriesService: CategoriesService) {
     addIcons({ restaurantOutline, locationOutline, pricetagOutline, arrowBackOutline, timeOutline, listOutline });
 
     this.form = this.fb.group({
@@ -42,6 +44,13 @@ export class AddRestaurantPage {
       description:       ['', Validators.required],
       scheduleWeekdays:  [''],
       scheduleWeekends:  [''],
+    });
+  }
+
+  ngOnInit(): void {
+    this.categoriesService.getAll().subscribe({
+      next: (data) => this.categories = data,
+      error: (err) => console.error('Error loading categories:', err),
     });
   }
 

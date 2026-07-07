@@ -1,48 +1,26 @@
 import { Injectable } from '@angular/core';
-import restaurantsData from '../../../assets/data/restaurants.json';
-
-export interface Schedule {
-  day: string;
-  hours: string;
-}
-
-export interface Review {
-  id: string;
-  userName: string;
-  rating: number;
-  date: string;
-  comment: string;
-}
-
-export interface Restaurant {
-  id: string;
-  name: string;
-  mapsUrl: string;
-  cover: string;
-  logo: string;
-  distance: string;
-  city: string;
-  category: string;
-  avgPrice: string;
-  global: number;
-  description: string;
-  reviews: Review[];
-  schedule: Schedule[];
-  menuPhotos: string[];
-}
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { RestaurantDetail, RestaurantListItem } from 'src/app/models/restaurant.model';
 
 @Injectable({ providedIn: 'root' })
-export class Restaurants {
-  readonly categories = [
-    'Tradicional', 'Petiscos', 'Grelhados',
-    'Marisqueira', 'Regional', 'Italiana', 'Japonesa', 'Vegana', 'Outro',
-  ];
+export class RestaurantsService {
+  private apiUrl = `${environment.apiBaseUrl}/restaurants`;
+  constructor(private http: HttpClient) {}
 
-  private restaurants: Restaurant[] = restaurantsData;
-
-  getAll(): Restaurant[] { return this.restaurants; }
-  getById(id: string): Restaurant | undefined {
-    return this.restaurants.find(r => r.id === id);
+  getAll(): Observable<RestaurantListItem[]> {
+    return this.http.get<RestaurantListItem[]>(this.apiUrl);
   }
 
+  getById(id: number): Observable<RestaurantDetail> {
+    return this.http.get<RestaurantDetail>(`${this.apiUrl}/${id}`);
+  }
+
+  search(name?: string, categoryId?: number): Observable<RestaurantListItem[]> {
+    let params = new HttpParams();
+    if (name) params = params.set('name', name);
+    if (categoryId != null) params = params.set('categoryId', categoryId);
+    return this.http.get<RestaurantListItem[]>(`${this.apiUrl}/search`, { params });
+  }
 }

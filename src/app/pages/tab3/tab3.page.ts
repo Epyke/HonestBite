@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonContent, IonIcon
 } from '@ionic/angular/standalone';
@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
 import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
 import { FavoritesService } from '../../services/favorites/favorites';
-import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { RestaurantListItem } from '../../models/restaurant.model';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth';
+import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -21,28 +24,38 @@ import { Restaurants, Restaurant } from '../../services/restaurants/restaurants'
     RestaurantCardComponent,
   ],
 })
-export class Tab3Page {
+export class Tab3Page implements ViewWillEnter, OnDestroy{
+  favorites: RestaurantListItem[] = [];
+  private favSub?: Subscription;
 
   constructor(
     private favoritesService: FavoritesService,
-    private restaurantService: Restaurants,
+    private authService: AuthService,
     private router: Router
   ) {
     addIcons({ heartOutline, searchOutline });
   }
 
-  get favorites(): Restaurant[] {
-    return this.favoritesService
-      .getFavoriteIds()
-      .map(id => this.restaurantService.getById(id))
-      .filter((r): r is Restaurant => r !== undefined);
+  ionViewWillEnter(): void {
+    this.loadFavorites();
+  }
+  
+  private loadFavorites(): void {
+    const id = this.authService.getUserId();
+    if (id == null) return;
+    this.favSub?.unsubscribe();
+    this.favSub = this.favoritesService.getUserFavorites(id).subscribe({
+      next: (list) => this.favorites = list.reduce<RestaurantListItem[]>(
+        (acc, f) => acc.concat(f.restaurant), []),
+      error: (err) => console.error('Error loading favorites:', err),
+    });
   }
 
-  get hasFavorites(): boolean {
-    return this.favorites.length > 0;
+
+  ngOnDestroy(): void {
+    this.favSub?.unsubscribe();
   }
 
-  goToSearch(): void {
-    this.router.navigateByUrl('/tabs/tab2');
-  }
+  get hasFavorites(): boolean { return this.favorites.length > 0; }
+  goToSearch(): void { this.router.navigateByUrl('/tabs/tab2');}
 }

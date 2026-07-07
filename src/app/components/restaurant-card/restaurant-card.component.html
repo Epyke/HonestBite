@@ -2,7 +2,7 @@
 @if (variant === 'compact') {
   <div class="card compact" (click)="openDetail()">
     <div class="card-image-wrapper">
-      <img [src]="restaurant.cover" [alt]="restaurant.name" class="card-image" />
+      <img [src]="coverUrl" [alt]="restaurant.name" class="card-image" />
       <div class="rating-badge">
         <span>{{ restaurant.global }}</span>
         <ion-icon name="star-sharp"></ion-icon>
@@ -10,10 +10,10 @@
     </div>
     <div class="card-body">
       <h4 class="card-name">{{ restaurant.name }}</h4>
-      <p class="card-category">{{ restaurant.category }}</p>
+      <p class="card-category">{{ categoryLabel }}</p>
       <p class="card-distance">
         <ion-icon name="location-outline"></ion-icon>
-        {{ restaurant.distance }}
+        {{ city }}
       </p>
     </div>
   </div>
@@ -23,7 +23,7 @@
 @if (variant === 'full') {
   <div class="card full" (click)="openDetail()">
     <div class="card-image-wrapper">
-      <img [src]="restaurant.cover" [alt]="restaurant.name" class="card-image" />
+      <img [src]="coverUrl" [alt]="restaurant.name" class="card-image" />
       <div class="rating-badge">
         <span>{{ restaurant.global }}</span>
         <ion-icon name="star-sharp"></ion-icon>
@@ -31,16 +31,15 @@
     </div>
     <div class="card-body">
       <h4 class="card-name">{{ restaurant.name }}</h4>
-      <p class="card-category">{{ restaurant.category }}</p>
+      <p class="card-category">{{ categoryLabel }}</p>
       <div class="card-meta">
         <span class="meta-item">
           <ion-icon name="location-outline"></ion-icon>
-          {{ restaurant.city }} - {{ restaurant.distance }}
+          {{ city }}
         </span>
-        <span class="meta-divider">·</span>
         <span class="meta-item">
           <ion-icon name="cash-outline"></ion-icon>
-          {{ restaurant.avgPrice }}
+          {{ restaurant.avgPrice }}€
         </span>
       </div>
     </div>

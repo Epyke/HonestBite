@@ -269,3 +269,10 @@
 
   &.closed { color: #e53e3e; font-weight: 500; }
 }
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

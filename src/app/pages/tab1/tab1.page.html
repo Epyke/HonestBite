@@ -16,21 +16,6 @@
     <p class="greeting-subtitle">Que restaurante te apetece hoje?</p>
   </section>
 
-  <!-- Filtros de categoria -->
-  <section class="categories-section">
-    <swiper-container slides-per-view="auto" space-between="8" free-mode="true" class="chips-swiper">
-      @for (cat of categories; track cat.value) {
-        <swiper-slide class="chip-slide">
-          <ion-chip
-            [class.selected]="selectedCategory === cat.value"
-            (click)="selectCategory(cat.value)">
-            <ion-label>{{ cat.label }}</ion-label>
-          </ion-chip>
-        </swiper-slide>
-      }
-    </swiper-container>
-  </section>
-
   <!-- Mais Populares -->
   <section class="feed-section">
     <div class="section-header">
@@ -50,14 +35,25 @@
     </swiper-container>
   </section>
 
-  <!-- Lista completa / filtrada -->
-  <section class="feed-section">
-    <div class="section-header">
+  <div class="section-header">
       <h3 class="section-title">
         {{ selectedCategory === 'todos' ? 'Todos os Restaurantes' : 'Resultados' }}
       </h3>
       <span class="section-count">{{ filteredRestaurants.length }}</span>
     </div>
+
+  <section class="categories-section">
+    <swiper-container slides-per-view="auto" space-between="8" free-mode="true" class="chips-swiper">
+      @for (cat of categories; track cat.value) {
+        <swiper-slide class="chip-slide">
+          <ion-chip
+            [class.selected]="selectedCategory === cat.value"
+            (click)="selectCategory(cat.value)">
+            <ion-label>{{ cat.label }}</ion-label>
+          </ion-chip>
+        </swiper-slide>
+      }
+    </swiper-container>
 
     @if (filteredRestaurants.length === 0) {
       <div class="empty-state">

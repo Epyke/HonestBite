@@ -10,7 +10,7 @@ import {
   star, starOutline, closeOutline,
   personOutline, checkmarkOutline, restaurantOutline,
 } from 'ionicons/icons';
-import { userService } from '../../services/user/user';
+import { AuthService } from 'src/app/services/auth/auth';
 
 @Component({
   selector: 'app-review-form-modal',
@@ -35,10 +35,10 @@ export class ReviewFormModalComponent {
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private authService: userService,
+    private authService: AuthService,
   ) {
     addIcons({ star, starOutline, closeOutline, personOutline, checkmarkOutline, restaurantOutline });
-    this.userName = this.authService.currentUser?.user_metadata?.['username'] ?? '';
+    this.userName = this.authService.currentUser()?.username ?? '';
   }
 
   get ratingLabel(): string {

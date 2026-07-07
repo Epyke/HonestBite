@@ -14,8 +14,8 @@
           <img alt="Foto de perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
       </div>
-      <h1 class="profile-name">{{ user.name }}</h1>
-      <p class="profile-since">{{ user.memberSince }}</p>
+      <h1 class="profile-name">{{ user?.username }}</h1>
+      <p class="profile-since">Conta criada: {{ memberSince }}</p>
     </div>
 
     <!-- Informações pessoais -->
@@ -29,7 +29,7 @@
         </div>
         <div class="info-content">
           <span class="info-label">Nome completo</span>
-          <span class="info-value">{{ user.name }}</span>
+          <span class="info-value">{{ user?.username }}</span>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="info-content">
           <span class="info-label">Email</span>
-          <span class="info-value">{{ user.email }}</span>
+          <span class="info-value">{{ user?.email }}</span>
         </div>
       </div>
     </div>
