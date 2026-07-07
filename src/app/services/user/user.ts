@@ -32,20 +32,17 @@ export class userService {
     this.session = null;
   }
 
-  //Obter utilizador, se sessão existente, se não retornar nulo
-  //Se a parte esquerda for nula ou undefined, vai retornar nulo (??)
+  async loadSession(): Promise<void> {
+    const { data } = await this.supabase.getSession();
+    this.session = data.session;
+  }
+
   get currentUser(): User | null {
     return this.session?.user ?? null;
   }
 
-  //Retorna true se existir uma sessão ou false se não existir
   get isLoggedIn(): boolean {
     return this.session !== null;
   }
 
-  //Carregar a sessão
-  async loadSession(): Promise<void> {
-  const { data } = await this.supabase.getSession();
-  this.session = data.session;
-  }
 }
