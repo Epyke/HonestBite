@@ -47,7 +47,11 @@
       </ion-grid>
 
       <div class="action-row">
-        <span class="category-badge">{{ restaurant.category }}</span>
+        <div class="category-badges">
+          @for (cat of restaurant.categories; track cat.id) {
+            <span class="category-badge">{{ cat.label }}</span>
+          }
+        </div>
         <ion-button class="menu-btn" (click)="openMenu()">
           <ion-icon slot="start" name="fast-food-outline"></ion-icon>
           Ver Menu
@@ -57,7 +61,7 @@
       <div class="detail-meta">
         <span class="meta-item">
           <ion-icon name="location-outline"></ion-icon>
-          {{ restaurant.city }}
+          @if (restaurant.street) {{{ restaurant.street }}, }{{ restaurant.city }}
         </span>
         <span class="meta-item">
           <ion-icon name="cash-outline"></ion-icon>

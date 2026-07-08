@@ -120,6 +120,12 @@
   ion-icon { color: #ffffff; font-size: 14px; }
 }
 
+.category-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .category-badge {
   display: inline-flex;
   align-items: center;

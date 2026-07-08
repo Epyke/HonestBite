@@ -10,8 +10,9 @@ export interface RestaurantDetail {
   cover: string;
   logo: string;
   distance: string;
+  street: string;
   city: string;
-  category: string;
+  categories: Category[];
   avgPrice: string;
   global: number;
   description: string;

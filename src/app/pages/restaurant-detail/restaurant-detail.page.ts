@@ -73,7 +73,11 @@ export class RestaurantDetailPage implements OnInit {
   }
 
   openMaps(): void {
-    window.open(this.restaurant!.mapsUrl, '_system');
+    const query = [this.restaurant?.street, this.restaurant?.city]
+      .filter(Boolean)
+      .join(', ');
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    window.open(url, '_system');
   }
 
   async openMenu(): Promise<void> {
