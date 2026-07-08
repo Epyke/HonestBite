@@ -25,6 +25,6 @@ export class RestaurantCardComponent {
   }
 
   get coverUrl(): string { return this.restaurant.cover; }
-  get categoryLabel(): string { return this.restaurant.categories[0].label; }
-  get city(): string { return this.restaurant.adress.city;}
+  get categoryLabel(): string { return this.restaurant.categories?.[0]?.label ?? ''; }
+  get city(): string { return this.restaurant.adress?.city ?? ''; }
 }

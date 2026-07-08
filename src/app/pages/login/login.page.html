@@ -11,54 +11,54 @@
     <ion-card class="login-card">
       <section class="brand">
         <h1>HonestBite</h1>
-        <p>Entra na tua conta para descobrir reviews honestas de restaurantes.</p>
+        <p>Entra na tua conta para descobrir avaliações honestas de restaurantes.</p>
       </section>
 
       <form [formGroup]="loginForm" (ngSubmit)="fazerLogin()" class="login-form">
         <ion-list lines="none" class="form-list">
-          <ion-item class="premium-input">
-            <ion-icon name="mail-outline" slot="start"></ion-icon>
-
-            <ion-input
-              label="E-mail"
-              label-placement="floating"
-              type="email"
-              inputmode="email"
-              autocomplete="email"
-              formControlName="email"
-            ></ion-input>
-          </ion-item>
-
-          @if (email?.touched && email?.invalid) {
-            <ion-note color="danger">Introduz um e-mail válido.</ion-note>
-          }
-
-          <ion-item class="premium-input">
-            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-
-            <ion-input
-              label="Palavra-passe"
-              label-placement="floating"
-              [type]="mostrarPassword ? 'text' : 'password'"
-              autocomplete="current-password"
-              formControlName="password"
-            ></ion-input>
-
-            <ion-button
-              slot="end"
-              fill="clear"
-              type="button"
-              class="password-toggle"
-              (click)="alternarPassword()"
-              [attr.aria-label]="mostrarPassword ? 'Esconder password' : 'Mostrar password'"
+          <div class="field">
+            <ion-item
+              class="premium-input"
+              [class.field-invalid]="email?.invalid && email?.touched"
             >
-              <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-            </ion-button>
-          </ion-item>
+              <ion-input
+                label="E-mail"
+                label-placement="floating"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                formControlName="email"
+                [errorText]="emailError"
+              ></ion-input>
+            </ion-item>
+          </div>
 
-          @if (password?.touched && password?.invalid) {
-            <ion-note color="danger">A password deve ter pelo menos 6 caracteres.</ion-note>
-          }
+          <div class="field">
+            <ion-item
+              class="premium-input"
+              [class.field-invalid]="password?.invalid && password?.touched"
+            >
+              <ion-input
+                label="Palavra-passe"
+                label-placement="floating"
+                [type]="mostrarPassword ? 'text' : 'password'"
+                autocomplete="current-password"
+                formControlName="password"
+                errorText="Este campo é obrigatório"
+              ></ion-input>
+
+              <ion-button
+                slot="end"
+                fill="clear"
+                type="button"
+                class="password-toggle"
+                (click)="alternarPassword()"
+                [attr.aria-label]="mostrarPassword ? 'Esconder password' : 'Mostrar password'"
+              >
+                <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </div>
         </ion-list>
 
         @if (errorMessage) {

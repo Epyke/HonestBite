@@ -23,4 +23,14 @@ export class RestaurantsService {
     if (categoryId != null) params = params.set('categoryId', categoryId);
     return this.http.get<RestaurantListItem[]>(`${this.apiUrl}/search`, { params });
   }
+
+  create(data: unknown, coverImg: File, menus: File[] = []): Observable<{ id: number }> {
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
+    formData.append('coverImg', coverImg);
+    for (const menu of menus) {
+      formData.append('menus', menu);
+    }
+    return this.http.post<{ id: number }>(this.apiUrl, formData);
+  }
 }

@@ -53,7 +53,13 @@ export class RegisterPage {
       await firstValueFrom(this.authService.register({ username: nomeCompleto, email, password }));
       this.router.navigateByUrl('/login');
     } catch (err: any) {
-      this.errorMessage = err?.error?.message ?? 'Erro ao criar conta.';
+      if (err?.status === 409) {
+        this.email?.setErrors({ emailTaken: true });
+        this.email?.markAsTouched();
+      } else {
+        this.errorMessage = err?.error?.message ?? 'Erro ao criar conta.';
+      }
+    } finally {
       this.loading = false;
     }
   }

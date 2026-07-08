@@ -14,10 +14,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage),
   },
   {
-    path: 'forgot-password',
-    loadComponent: () => import('./pages/forgot-password/forgot-password.page').then((m) => m.ForgotPasswordPage),
-  },
-  {
     path: 'restaurant/:id',
     loadComponent: () => import('./pages/restaurant-detail/restaurant-detail.page').then((m) => m.RestaurantDetailPage),
   },

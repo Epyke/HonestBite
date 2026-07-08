@@ -5,6 +5,14 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth';
+import { addIcons } from 'ionicons';
+import {
+  mailOutline,
+  lockClosedOutline,
+  eyeOutline,
+  eyeOffOutline,
+} from 'ionicons/icons';
+
 
 @Component({
   selector: 'app-login',
@@ -19,12 +27,11 @@ export class LoginPage {
   errorMessage = '';
   loading = false;
 
-  constructor(private formBuilder: FormBuilder,
-     private authService: AuthService,
-      private router: Router) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+      addIcons({ mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline });
+      this.loginForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
     });
   }
 
@@ -38,6 +45,13 @@ export class LoginPage {
 
   alternarPassword(): void {
     this.mostrarPassword = !this.mostrarPassword;
+  }
+
+  get emailError(): string {
+  const c = this.email;
+  if (c?.hasError('required')) return 'Este campo é obrigatório.';
+  if (c?.hasError('email'))    return 'Introduz um e-mail válido.';
+  return '';
   }
 
   async fazerLogin(): Promise<void> {

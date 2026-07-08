@@ -45,8 +45,14 @@
             ></ion-input>
           </ion-item>
 
-          @if (email?.touched && email?.invalid) {
+          @if (email?.touched && email?.hasError('required')) {
+            <ion-note color="danger">Introduz o teu e-mail.</ion-note>
+          }
+          @if (email?.touched && email?.hasError('email')) {
             <ion-note color="danger">Introduz um e-mail válido.</ion-note>
+          }
+          @if (email?.hasError('emailTaken')) {
+            <ion-note color="danger">Este e-mail já está registado.</ion-note>
           }
 
           <ion-item class="premium-input">
@@ -106,14 +112,18 @@
             <ion-note color="danger">As passwords não coincidem.</ion-note>
           }
         </ion-list>
+        
+        @if (errorMessage) {
+          <ion-note color="danger" class="form-error">{{ errorMessage }}</ion-note>
+        }
 
         <ion-button
           expand="block"
           type="submit"
           class="register-button"
-          [disabled]="registerForm.invalid"
+          [disabled]="registerForm.invalid || loading"
         >
-          Criar Conta
+          {{ loading ? 'A criar conta...' : 'Criar Conta' }}
         </ion-button>
       </form>
 
