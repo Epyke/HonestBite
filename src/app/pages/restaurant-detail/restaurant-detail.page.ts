@@ -21,6 +21,7 @@ import { ReviewFormModalComponent } from '../../components/review-form-modal/rev
 import { AuthService } from '../../services/auth/auth';
 import { Router } from '@angular/router';
 import { RestaurantsService } from 'src/app/services/restaurants/restaurants.js';
+import { ViewWillLeave } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -29,10 +30,12 @@ import { RestaurantsService } from 'src/app/services/restaurants/restaurants.js'
   standalone: true,
   imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, ReviewCardComponent, IonSpinner],
 })
-export class RestaurantDetailPage implements OnInit {
+export class RestaurantDetailPage implements OnInit, ViewWillLeave {
   restaurant?: RestaurantDetail;
   isFavorite: boolean = false;
   isLoading = true;
+
+  private reviewModal?: HTMLIonModalElement;
 
   constructor(
     private route: ActivatedRoute,
@@ -125,9 +128,11 @@ export class RestaurantDetailPage implements OnInit {
       backdropBreakpoint: 0.62,
       handleBehavior: 'cycle',
     });
+    this.reviewModal = modal;
     modal.present();
-    
+
     const { data, role } = await modal.onWillDismiss();
+    this.reviewModal = undefined;
     if (role === 'confirm') {
       this.ratingsService.create({
       restaurantId: this.restaurant!.id,
@@ -135,5 +140,9 @@ export class RestaurantDetailPage implements OnInit {
       comment: data.comment,
     }).subscribe({ error: (err) => console.error('Error submitting rating:', err) });
     }
+  }
+
+  ionViewWillLeave(): void {
+    this.reviewModal?.dismiss();
   }
 }
