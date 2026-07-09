@@ -27,10 +27,18 @@
       space-between="12"
       free-mode="true"
       class="popular-swiper">
-      @for (restaurant of popularRestaurants; track restaurant.id) {
-        <swiper-slide>
-          <restaurant-card [restaurant]="restaurant" variant="compact"></restaurant-card>
-        </swiper-slide>
+      @if (loading) {
+        @for (i of skeletonItems; track i) {
+          <swiper-slide>
+            <restaurant-card-skeleton variant="compact"></restaurant-card-skeleton>
+          </swiper-slide>
+        }
+      } @else {
+        @for (restaurant of popularRestaurants; track restaurant.id) {
+          <swiper-slide>
+            <restaurant-card [restaurant]="restaurant" variant="compact"></restaurant-card>
+          </swiper-slide>
+        }
       }
     </swiper-container>
   </section>
@@ -55,17 +63,25 @@
       }
     </swiper-container>
 
-    @if (filteredRestaurants.length === 0) {
-      <div class="empty-state">
-        <p class="empty-text">Sem restaurantes nesta categoria.</p>
+    @if (loading) {
+      <div class="cards-list">
+        @for (i of skeletonItems; track i) {
+          <restaurant-card-skeleton variant="full"></restaurant-card-skeleton>
+        }
+      </div>
+    } @else {
+      @if (filteredRestaurants.length === 0) {
+        <div class="empty-state">
+          <p class="empty-text">Sem restaurantes nesta categoria.</p>
+        </div>
+      }
+
+      <div class="cards-list">
+        @for (restaurant of filteredRestaurants; track restaurant.id) {
+          <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
+        }
       </div>
     }
-
-    <div class="cards-list">
-      @for (restaurant of filteredRestaurants; track restaurant.id) {
-        <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
-      }
-    </div>
   </section>
 
 </ion-content>

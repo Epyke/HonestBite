@@ -14,26 +14,35 @@
     </p>
   </div>
 
-  <!-- Lista de favoritos -->
-  @if (hasFavorites) {
+  <!-- Loading -->
+  @if (loading) {
     <div class="favorites-list">
-      @for (restaurant of favorites; track restaurant.id) {
-        <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
+      @for (i of skeletonItems; track i) {
+        <restaurant-card-skeleton variant="full"></restaurant-card-skeleton>
       }
     </div>
-  }
-
-  <!-- Estado vazio -->
-  @if (!hasFavorites) {
-    <div class="empty-state">
-      <div class="empty-icon-wrapper">
-        <ion-icon name="heart-outline"></ion-icon>
+  } @else {
+    <!-- Lista de favoritos -->
+    @if (hasFavorites) {
+      <div class="favorites-list">
+        @for (restaurant of favorites; track restaurant.id) {
+          <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
+        }
       </div>
-      <h3 class="empty-title">Sem favoritos ainda</h3>
-      <p class="empty-text">
-        Explora restaurantes e guarda os teus preferidos tocando na página do restaurante.
-      </p>
-    </div>
+    }
+
+    <!-- Estado vazio -->
+    @if (!hasFavorites) {
+      <div class="empty-state">
+        <div class="empty-icon-wrapper">
+          <ion-icon name="heart-outline"></ion-icon>
+        </div>
+        <h3 class="empty-title">Sem favoritos ainda</h3>
+        <p class="empty-text">
+          Explora restaurantes e guarda os teus preferidos tocando na página do restaurante.
+        </p>
+      </div>
+    }
   }
 
 </ion-content>

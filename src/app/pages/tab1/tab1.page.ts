@@ -6,6 +6,7 @@ import { addIcons } from 'ionicons';
 import { trophyOutline } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
 import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+import { RestaurantCardSkeletonComponent } from '../../components/restaurant-card-skeleton/restaurant-card-skeleton.component';
 import {ScreenOrientation, OrientationLockOptions, OrientationLockType} from '@capacitor/screen-orientation';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {ViewWillEnter} from '@ionic/angular'
@@ -25,6 +26,7 @@ import { Subscription } from 'rxjs';
     IonChip, IonLabel, IonIcon,
     CustomToolbarComponent,
     RestaurantCardComponent,
+    RestaurantCardSkeletonComponent,
     IonRefresher,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -32,9 +34,12 @@ import { Subscription } from 'rxjs';
 export class Tab1Page implements ViewWillEnter, OnInit, OnDestroy {
 
   selectedCategory = 'todos';
-  
+
   allRestaurants: RestaurantListItem[] = [];
   categories: Category[] = [];
+
+  loading = true;
+  skeletonItems = [1, 2, 3, 4];
 
   private restaurantSub?: Subscription;
   private categorySub?: Subscription;
@@ -61,10 +66,12 @@ export class Tab1Page implements ViewWillEnter, OnInit, OnDestroy {
     this.restaurantSub = this.restaurantService.getAll().subscribe({
       next: (data) => {
         this.allRestaurants = data;
+        this.loading = false;
         if (event) event.target.complete();
       },
       error: (err) => {
         console.error('Error fetching restaurants:', err);
+        this.loading = false;
         if (event) event.target.complete();
       }
     });

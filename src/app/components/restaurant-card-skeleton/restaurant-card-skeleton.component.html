@@ -1,0 +1,18 @@
+<div class="card" [class.compact]="variant === 'compact'" [class.full]="variant === 'full'">
+  <div class="card-image-wrapper">
+    <ion-skeleton-text [animated]="true" class="card-image"></ion-skeleton-text>
+  </div>
+  <div class="card-body">
+    <ion-skeleton-text [animated]="true" class="skeleton-name"></ion-skeleton-text>
+    <ion-skeleton-text [animated]="true" class="skeleton-category"></ion-skeleton-text>
+
+    @if (variant === 'full') {
+      <div class="card-meta">
+        <ion-skeleton-text [animated]="true" class="skeleton-meta"></ion-skeleton-text>
+        <ion-skeleton-text [animated]="true" class="skeleton-meta"></ion-skeleton-text>
+      </div>
+    } @else {
+      <ion-skeleton-text [animated]="true" class="skeleton-distance"></ion-skeleton-text>
+    }
+  </div>
+</div>

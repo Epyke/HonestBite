@@ -7,6 +7,7 @@ import { heartOutline, searchOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
 import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+import { RestaurantCardSkeletonComponent } from '../../components/restaurant-card-skeleton/restaurant-card-skeleton.component';
 import { FavoritesService } from '../../services/favorites/favorites';
 import { RestaurantListItem } from '../../models/restaurant.model';
 import { Subscription } from 'rxjs';
@@ -22,10 +23,13 @@ import { ViewWillEnter } from '@ionic/angular';
     IonHeader, IonToolbar, IonContent, IonIcon,
     CustomToolbarComponent,
     RestaurantCardComponent,
+    RestaurantCardSkeletonComponent,
   ],
 })
 export class Tab3Page implements ViewWillEnter, OnDestroy{
   favorites: RestaurantListItem[] = [];
+  loading = true;
+  skeletonItems = [1, 2, 3, 4];
   private favSub?: Subscription;
 
   constructor(
@@ -42,12 +46,19 @@ export class Tab3Page implements ViewWillEnter, OnDestroy{
   
   private loadFavorites(): void {
     const id = this.authService.getUserId();
-    if (id == null) return;
+    if (id == null) { this.loading = false; return; }
+    if (this.favorites.length === 0) this.loading = true;
     this.favSub?.unsubscribe();
     this.favSub = this.favoritesService.getUserFavorites(id).subscribe({
-      next: (list) => this.favorites = list.reduce<RestaurantListItem[]>(
-        (acc, f) => acc.concat(f.restaurant), []),
-      error: (err) => console.error('Error loading favorites:', err),
+      next: (list) => {
+        this.favorites = list.reduce<RestaurantListItem[]>(
+          (acc, f) => acc.concat(f.restaurant), []);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading favorites:', err);
+        this.loading = false;
+      },
     });
   }
 
