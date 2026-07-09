@@ -92,7 +92,7 @@ export class AddRestaurantPage implements OnInit {
 
   ngOnInit(): void {
     this.categoriesService.getAll().subscribe({
-      next: (data) => this.categories = data,
+      next: (data) => this.categories = data.filter(c => c.value.toLowerCase() !== 'todos'),
       error: (err) => console.error('Error loading categories:', err),
     });
   }
