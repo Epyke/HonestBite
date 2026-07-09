@@ -220,13 +220,13 @@
 }
 
 // ── Favorite button ───────────────────────────
-.fav-btn-wrapper {
+.fav-btn {
+  @extend .hero-btn;
+  --color: #e53e3e;
   position: absolute;
   top: calc(14px + env(safe-area-inset-top));
   right: 8px;
 }
-
-.fav-btn { @extend .hero-btn; --color: #e53e3e; }
 
 // ── Schedule ──────────────────────────────────
 .schedule-section { margin-bottom: 24px; }
