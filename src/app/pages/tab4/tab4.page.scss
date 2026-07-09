@@ -222,10 +222,11 @@
 
 .btn-logout {
   --border-radius: 12px;
-  --border-color: #e0e4e9;
-  --color: #e53e3e;
-  --background: transparent;
-  --background-hover: #fff5f5;
+  --color: #ffffff;
+  --background: #e53e3e;
+  --background-hover: #c53030;
+  --background-activated: #9b2c2c;
+  --box-shadow: 0 6px 18px rgba(229, 62, 62, 0.28);
   font-size: 15px;
   font-weight: 700;
   text-transform: none;

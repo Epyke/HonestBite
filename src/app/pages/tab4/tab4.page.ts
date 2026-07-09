@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar
+  IonHeader, IonToolbar, IonContent, IonIcon, IonButton, IonAvatar,
+  AlertController,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
   personOutline, mailOutline, callOutline,
-  pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
+  pencilOutline, chatbubbleEllipsesOutline, addOutline, logInOutline
 } from 'ionicons/icons';
 import { CustomToolbarComponent } from '../../components/custom-toolbar/custom-toolbar.component';
 import { AuthService } from 'src/app/services/auth/auth';
@@ -25,10 +26,14 @@ import { UserSession } from 'src/app/services/auth/user-session';
 })
 export class Tab4Page {
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private alertCtrl: AlertController,
+  ) {
     addIcons({
       personOutline, mailOutline, callOutline,
-      pencilOutline, logOutOutline, chatbubbleEllipsesOutline, addOutline, storefrontOutline, logInOutline
+      pencilOutline, chatbubbleEllipsesOutline, addOutline, logInOutline
     });
   }
 
@@ -40,7 +45,19 @@ export class Tab4Page {
     this.router.navigateByUrl('/login');
   }
 
-  logout(): void {
+  async confirmLogout(): Promise<void> {
+    const alert = await this.alertCtrl.create({
+      header: 'Terminar sessão?',
+      message: 'Vai precisar de iniciar sessão novamente para aceder à sua conta.',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        { text: 'Confirmar', role: 'confirm', handler: () => this.logout() },
+      ],
+    });
+    await alert.present();
+  }
+
+  private logout(): void {
     UserSession.clear();
     this.router.navigateByUrl('/');
   }

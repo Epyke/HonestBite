@@ -68,7 +68,7 @@ export class ReviewFormModalComponent {
 
     const alert = await this.alertCtrl.create({
       header: 'Publicar avaliação?',
-      message: `${this.ratingLabel} · ${this.restaurantName}`,
+      message: `${this.ratingLabel} - ${this.restaurantName}`,
       buttons: [
         {
           text: 'Cancelar',
