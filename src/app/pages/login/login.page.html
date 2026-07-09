@@ -71,7 +71,11 @@
           class="login-button"
           [disabled]="loginForm.invalid || loading"
         >
-          {{ loading ? 'A entrar...' : 'Entrar' }}
+          @if (loading) {
+            <ion-spinner name="dots"></ion-spinner>
+          } @else {
+            Entrar
+          }
         </ion-button>
       </form>
 

@@ -199,8 +199,17 @@
           <ion-note color="danger" class="submit-error">{{ submitError }}</ion-note>
         }
 
-        <ion-button expand="block" type="button" class="profile-button" (click)="submit()">
-          Submeter Restaurante
+        <ion-button
+          expand="block"
+          type="button"
+          class="profile-button"
+          (click)="submit()"
+          [disabled]="isFormInvalid || submitting">
+          @if (submitting) {
+            <ion-spinner name="dots"></ion-spinner>
+          } @else {
+            Submeter Restaurante
+          }
         </ion-button>
       </form>
 

@@ -85,6 +85,10 @@ ion-note {
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
+
+  ion-spinner {
+    color: #ffffff;
+  }
 }
 
 .login-button[disabled] {

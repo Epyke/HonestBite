@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormsModule,ReactiveFormsModule, Validators } f
 import {
   IonButton, IonButtons, IonCard, IonContent, IonIcon,
   IonInput, IonItem, IonList, IonSelect, IonSelectOption,
-  IonTextarea, IonToggle, IonNote, IonDatetime, IonDatetimeButton, IonModal,
+  IonTextarea, IonToggle, IonNote, IonDatetime, IonDatetimeButton, IonModal, IonSpinner,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -27,13 +27,14 @@ import { RestaurantsService } from 'src/app/services/restaurants/restaurants';
     CommonModule, ReactiveFormsModule, FormsModule,
     IonContent, IonCard, IonList, IonItem, IonInput, IonIcon,
     IonButton, IonButtons, IonSelect, IonSelectOption, IonTextarea, IonToggle, IonNote,
-    IonDatetime, IonDatetimeButton, IonModal
+    IonDatetime, IonDatetimeButton, IonModal, IonSpinner
   ]
 })
 
 export class AddRestaurantPage implements OnInit {
   form: FormGroup;
   submitted = false;
+  submitting = false;
   submitError = '';
   categories: Category[] = [];
   coverFile: File | null = null;
@@ -60,6 +61,13 @@ export class AddRestaurantPage implements OnInit {
       avgPrice:          ['', [Validators.required, Validators.min(0.01), Validators.max(1000), Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       description:       ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
     });
+  }
+
+  /** True when the form, schedule, or missing cover would block submission. */
+  get isFormInvalid(): boolean {
+    const scheduleInvalid = this.schedule.some(d =>
+      d.isOpen && d.intervals.some(i => this.timeLabel(i.open) >= this.timeLabel(i.close)));
+    return this.form.invalid || scheduleInvalid || !this.coverFile;
   }
 
   /** Returns true when a field should show its error (invalid + touched or after submit). */
@@ -151,6 +159,8 @@ export class AddRestaurantPage implements OnInit {
   }
 
   submit(): void {
+  if (this.submitting) return;
+
   this.submitted = true;
   this.submitError = '';
   this.form.markAllAsTouched();
@@ -168,6 +178,8 @@ export class AddRestaurantPage implements OnInit {
     }
     return;
   }
+
+  this.submitting = true;
 
   const { name, category, city, address, avgPrice, description } = this.form.value;
 
@@ -195,10 +207,12 @@ export class AddRestaurantPage implements OnInit {
 
   this.restaurantService.create(data, this.coverFile, menus).subscribe({
       next: (res) => {
+        this.submitting = false;
         this.router.navigate(['/tabs/tab4']);
       },
       error: (err) => {
         console.error('Erro ao criar restaurante:', err);
+        this.submitting = false;
         this.submitError = 'Ocorreu um erro ao criar o restaurante. Tenta novamente.';
       },
     });
