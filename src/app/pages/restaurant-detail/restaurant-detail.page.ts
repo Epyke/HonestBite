@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonContent, IonIcon, IonButton, IonButtons, IonFooter,
-  IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton
+  IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, IonSpinner
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -11,34 +11,40 @@ import {
   starSharp, createOutline, heart, heartOutline,
   timeOutline, navigateOutline, fastFoodOutline
 } from 'ionicons/icons';
-import { Restaurants, Restaurant } from '../../services/restaurants/restaurants';
+import { RestaurantDetail } from '../../models/restaurant.model';
 import { ReviewCardComponent } from '../../components/review-card/review-card.component';
 import { FavoritesService } from '../../services/favorites/favorites';
 import { RatingsService } from '../../services/ratings/ratings';
 import { ModalController } from '@ionic/angular/standalone';
 import { MenuModalComponent } from '../../components/menu-modal/menu-modal.component';
 import { ReviewFormModalComponent } from '../../components/review-form-modal/review-form-modal.component';
-import { userService } from '../../services/user/user';
+import { AuthService } from '../../services/auth/auth';
 import { Router } from '@angular/router';
+import { RestaurantsService } from 'src/app/services/restaurants/restaurants.js';
+import { ViewWillLeave } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-detail',
   templateUrl: './restaurant-detail.page.html',
   styleUrls: ['./restaurant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, ReviewCardComponent],
+  imports: [IonContent, IonIcon, IonButton, IonButtons, IonFooter, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonBackButton, ReviewCardComponent, IonSpinner],
 })
-export class RestaurantDetailPage implements OnInit {
-  restaurant?: Restaurant;
+export class RestaurantDetailPage implements OnInit, ViewWillLeave {
+  restaurant?: RestaurantDetail;
+  isFavorite: boolean = false;
+  isLoading = true;
+
+  private reviewModal?: HTMLIonModalElement;
 
   constructor(
     private route: ActivatedRoute,
-    private restaurantService: Restaurants,
+    private restaurantService: RestaurantsService,
     private favoritesService: FavoritesService,
     private ratingsService: RatingsService,
     private location: Location,
     private modalCtrl: ModalController,
-    private authService: userService,
+    private authService: AuthService,
     private router: Router,
   ) {
     addIcons({
@@ -49,16 +55,15 @@ export class RestaurantDetailPage implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.restaurant = this.restaurantService.getById(id);
-    if (!this.restaurant) this.location.back();
-  }
-
-  get isFavorite(): boolean {
-    return this.restaurant ? this.favoritesService.isFavorite(this.restaurant.id) : false;
-  }
-
-  toggleFavorite(): void {
-    if (this.restaurant) this.favoritesService.toggle(this.restaurant.id);
+    if (!id) {this.location.back(); return;}
+    this.restaurantService.getById(Number(id)).subscribe({
+      next: (r) => {
+        this.restaurant = r;
+        this.isLoading = false
+        this.loadFavoriteStatus(r.id);
+      },
+      error: () => this.location.back(),
+    });
   }
 
   goBack(): void {
@@ -71,7 +76,11 @@ export class RestaurantDetailPage implements OnInit {
   }
 
   openMaps(): void {
-    window.open(this.restaurant!.mapsUrl, '_system');
+    const query = [this.restaurant?.street, this.restaurant?.city]
+      .filter(Boolean)
+      .join(', ');
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    window.open(url, '_system');
   }
 
   async openMenu(): Promise<void> {
@@ -85,8 +94,26 @@ export class RestaurantDetailPage implements OnInit {
     await modal.present();
   }
 
+  private loadFavoriteStatus(restaurantId: number): void {
+  const userId = this.authService.getUserId();
+  if (userId == null) return;
+  this.favoritesService.getStatus(userId, restaurantId).subscribe({
+      next: (s) => this.isFavorite = s.favorited,
+      error: (err) => console.error('Error loading favorite status:', err),
+    });
+  }
+
+  toggleFavorite(): void {
+    const userId = this.authService.getUserId();
+    if (userId == null || !this.restaurant) { this.router.navigateByUrl('/login'); return; }
+    this.favoritesService.toggle(userId, this.restaurant.id).subscribe({
+      next: (s) => this.isFavorite = s.favorited,
+      error: (err) => console.error('Error toggling favorite:', err),
+    });
+  }
+
   async openReviewForm(): Promise<void> {
-    if (!this.authService.isLoggedIn) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
       return;
     }
@@ -96,16 +123,26 @@ export class RestaurantDetailPage implements OnInit {
         restaurantId: this.restaurant!.id,
         restaurantName: this.restaurant!.name,
       },
-      breakpoints: [0, 0.62],
+      breakpoints: [0, 0.62, 1],
       initialBreakpoint: 0.62,
       backdropBreakpoint: 0.62,
       handleBehavior: 'cycle',
     });
+    this.reviewModal = modal;
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
+    this.reviewModal = undefined;
     if (role === 'confirm') {
-      this.ratingsService.submitReview(this.restaurant!.id, data);
+      this.ratingsService.create({
+      restaurantId: this.restaurant!.id,
+      score: data.rating,
+      comment: data.comment,
+    }).subscribe({ error: (err) => console.error('Error submitting rating:', err) });
     }
+  }
+
+  ionViewWillLeave(): void {
+    this.reviewModal?.dismiss();
   }
 }

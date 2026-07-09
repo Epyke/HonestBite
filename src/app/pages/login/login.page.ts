@@ -3,7 +3,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { userService } from 'src/app/services/user/user';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth';
+import { addIcons } from 'ionicons';
+import {
+  mailOutline,
+  lockClosedOutline,
+  eyeOutline,
+  eyeOffOutline,
+} from 'ionicons/icons';
+
 
 @Component({
   selector: 'app-login',
@@ -15,11 +24,14 @@ import { userService } from 'src/app/services/user/user';
 export class LoginPage {
   loginForm: FormGroup;
   mostrarPassword = false;
+  errorMessage = '';
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: userService, private router: Router) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+      addIcons({ mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline });
+      this.loginForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
     });
   }
 
@@ -35,8 +47,12 @@ export class LoginPage {
     this.mostrarPassword = !this.mostrarPassword;
   }
 
-  errorMessage = '';
-  loading = false;
+  get emailError(): string {
+  const c = this.email;
+  if (c?.hasError('required')) return 'Este campo é obrigatório.';
+  if (c?.hasError('email'))    return 'Introduz um e-mail válido.';
+  return '';
+  }
 
   async fazerLogin(): Promise<void> {
     if (this.loginForm.invalid) {
@@ -47,7 +63,7 @@ export class LoginPage {
     this.errorMessage = '';
     try {
       const { email, password } = this.loginForm.value;
-      await this.authService.login(email, password);
+      await firstValueFrom(this.authService.login({ email, password }));
       this.router.navigateByUrl('/');
     } catch (err: any) {
       this.errorMessage = 'E-mail ou palavra-passe incorretos.';

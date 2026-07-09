@@ -38,6 +38,8 @@
           [(ngModel)]="comment"
           placeholder="Partilhe a sua experiência..."
           [rows]="4"
+          (ionFocus)="onCommentFocus()"
+          (ionBlur)="onCommentBlur()"
         ></ion-textarea>
       </div>
     </div>

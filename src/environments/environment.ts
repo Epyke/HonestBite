@@ -2,8 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
-  supabaseUrl: 'https://mdibfisfshwxtxjmvmcd.supabase.co',
-  supabaseKey: 'sb_publishable_xOvF-_jZq_0dHVuCKszYlQ_oxG9NrgA',
+  apiBaseUrl: '/api',
 };
 /*
  * For easier debugging in development mode, you can import the following file

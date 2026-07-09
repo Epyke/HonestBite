@@ -1,36 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
-import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { FavoriteStatus, UserFavorite } from 'src/app/models/favorite.model';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
-  private favoriteIds: Set<string> = new Set();
+  private apiUrl = `${environment.apiBaseUrl}/favorites`;
+  constructor(private http: HttpClient) {}
 
-  constructor(private storage: Storage) {
-    this.init();
+  toggle(userId: number, restaurantId: number): Observable<FavoriteStatus> {
+    return this.http.post<FavoriteStatus>(`${this.apiUrl}/user/${userId}/toggle/${restaurantId}`, {});
   }
 
-  private async init(): Promise<void> {
-    await this.storage.defineDriver(CordovaSQLiteDriver);
-    await this.storage.create();
-    const stored = await this.storage.get('favorite_ids');
-    this.favoriteIds = new Set(stored ?? []);
+  getStatus(userId: number, restaurantId: number): Observable<FavoriteStatus> {
+    return this.http.get<FavoriteStatus>(`${this.apiUrl}/user/${userId}/status/${restaurantId}`);
   }
 
-  isFavorite(id: string): boolean {
-    return this.favoriteIds.has(id);
-  }
-
-  async toggle(id: string): Promise<void> {
-    if (this.favoriteIds.has(id)) {
-      this.favoriteIds.delete(id);
-    } else {
-      this.favoriteIds.add(id);
-    }
-    await this.storage.set('favorite_ids', [...this.favoriteIds]);
-  }
-
-  getFavoriteIds(): string[] {
-    return Array.from(this.favoriteIds);
+  getUserFavorites(userId: number): Observable<UserFavorite[]> {
+    return this.http.get<UserFavorite[]>(`${this.apiUrl}/user/${userId}`);
   }
 }

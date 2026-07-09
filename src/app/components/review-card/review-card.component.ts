@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IonIcon, IonAvatar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { starSharp } from 'ionicons/icons';
-import { Review } from '../../services/restaurants/restaurants';
+import { Review } from '../../models/review.model';
 
 @Component({
   selector: 'review-card',

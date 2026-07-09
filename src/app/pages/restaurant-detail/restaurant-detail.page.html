@@ -7,24 +7,23 @@
 </ion-header>
 
 <ion-content class="detail-content" [fullscreen]="true">
-  @if (restaurant) {
-
-    <!-- Hero com botões sobrepostos -->
+  @if (isLoading){
+    <div class="spinner-wrapper">
+      <ion-spinner name="crescent" color="laranjaprinc"></ion-spinner>
+    </div>
+  } @else if (restaurant){
     <div class="hero-wrapper">
       <img [src]="restaurant.cover" [alt]="restaurant.name" class="hero-image" />
       <div class="hero-gradient"></div>
 
       <!-- Botão favorito -->
-      <ion-buttons class="fav-btn-wrapper">
-        <ion-button shape="round" fill="clear" class="fav-btn" (click)="toggleFavorite()">
-          <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-button shape="round" fill="clear" class="fav-btn" (click)="toggleFavorite()">
+        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+      </ion-button>
     </div>
 
     <!-- Cartão de detalhe flutuante -->
     <div class="detail-card">
-
       
       <ion-grid class="detail-title-grid">
         <ion-row class="ion-align-items-center">
@@ -46,7 +45,11 @@
       </ion-grid>
 
       <div class="action-row">
-        <span class="category-badge">{{ restaurant.category }}</span>
+        <div class="category-badges">
+          @for (cat of restaurant.categories; track cat.id) {
+            <span class="category-badge">{{ cat.label }}</span>
+          }
+        </div>
         <ion-button class="menu-btn" (click)="openMenu()">
           <ion-icon slot="start" name="fast-food-outline"></ion-icon>
           Ver Menu
@@ -56,11 +59,11 @@
       <div class="detail-meta">
         <span class="meta-item">
           <ion-icon name="location-outline"></ion-icon>
-          {{ restaurant.city }} · {{ restaurant.distance }}
+          @if (restaurant.street) {{{ restaurant.street }}, }{{ restaurant.city }}
         </span>
         <span class="meta-item">
           <ion-icon name="cash-outline"></ion-icon>
-          Preço médio: {{ restaurant.avgPrice }}
+          Preço médio: {{ restaurant.avgPrice }}€
         </span>
       </div>
 
@@ -105,8 +108,10 @@
 </ion-content>
 
 <ion-footer class="detail-footer">
-  <ion-button expand="block" class="write-review-btn" (click)="openReviewForm()">
-    <ion-icon slot="end" name="create-outline"></ion-icon>
-    Escrever uma Avaliação
-  </ion-button>
+  @if (restaurant) {
+    <ion-button expand="block" class="write-review-btn" (click)="openReviewForm()">
+      <ion-icon slot="end" name="create-outline"></ion-icon>
+      Escrever uma Avaliação
+    </ion-button>
+  }
 </ion-footer>

@@ -51,48 +51,6 @@
   background: transparent;
 }
 
-.premium-input {
-  --background: #f4f5f8;
-  --border-color: transparent;
-  --border-width: 0;
-  --border-style: none;
-  --inner-border-width: 0;
-  --highlight-height: 0;
-  --min-height: 58px;
-  --padding-start: 14px;
-  --padding-end: 8px;
-  --inner-padding-end: 4px;
-
-  margin-bottom: 14px;
-  border: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: box-shadow 160ms ease, background-color 160ms ease;
-}
-
-.premium-input ion-icon[slot="start"] {
-  margin-right: 10px;
-  color: #6b7280;
-  font-size: 20px;
-}
-
-.premium-input ion-input {
-  --background: #f4f5f8;
-  --color: #1f2933;
-  --placeholder-color: #6b7280;
-  --highlight-color-focused: transparent;
-  font-size: 15px;
-}
-
-.premium-input.item-has-focus {
-  --background: #ffffff;
-  box-shadow: 0 0 0 2px rgba(var(--ion-color-laranjaprinc-rgb), 0.22);
-}
-
-.premium-input.item-has-focus ion-input {
-  --background: #ffffff;
-}
-
 ion-note {
   display: block;
   margin: -6px 4px 14px 14px;
@@ -127,6 +85,10 @@ ion-note {
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
+
+  ion-spinner {
+    color: #ffffff;
+  }
 }
 
 .login-button[disabled] {
@@ -168,4 +130,44 @@ ion-note {
   .brand h1 {
     font-size: 38px;
   }
+}
+
+/* ---------- base field ---------- */
+.premium-input {
+  --background: #f4f5f8;
+  --border-width: 0;
+  --inner-border-width: 0;
+  --highlight-height: 0;              /* no Ionic underline */
+  --min-height: 58px;
+  --padding-start: 14px;
+  --padding-end: 8px;
+  --inner-padding-end: 4px;
+
+  margin-bottom: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #d7dbe0;      /* neutral ring */
+  transition: box-shadow 160ms ease;
+}
+
+.premium-input ion-input {
+  --background: transparent;
+  --color: #1f2933;                   /* typed text, neutral = dark */
+  --placeholder-color: #6b7280;
+  --highlight-height: 0;
+  font-size: 15px;
+}
+
+.premium-input.item-has-focus {
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-laranjaprinc-rgb), 0.45);
+}
+
+.premium-input.field-valid ion-input {
+  --color: #16a34a;
+  --highlight-color-valid: #16a34a;   /* keeps floating label green */
+}
+
+.premium-input.field-invalid ion-input {
+  --color: #dc2626;
+  --highlight-color-invalid: #dc2626; /* keeps floating label red */
 }

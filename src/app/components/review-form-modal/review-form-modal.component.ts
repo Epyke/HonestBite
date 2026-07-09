@@ -10,7 +10,7 @@ import {
   star, starOutline, closeOutline,
   personOutline, checkmarkOutline, restaurantOutline,
 } from 'ionicons/icons';
-import { userService } from '../../services/user/user';
+import { AuthService } from 'src/app/services/auth/auth';
 
 @Component({
   selector: 'app-review-form-modal',
@@ -35,10 +35,10 @@ export class ReviewFormModalComponent {
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private authService: userService,
+    private authService: AuthService,
   ) {
     addIcons({ star, starOutline, closeOutline, personOutline, checkmarkOutline, restaurantOutline });
-    this.userName = this.authService.currentUser?.user_metadata?.['username'] ?? '';
+    this.userName = this.authService.currentUser()?.username ?? '';
   }
 
   get ratingLabel(): string {
@@ -53,12 +53,22 @@ export class ReviewFormModalComponent {
     this.rating = value;
   }
 
+  async onCommentFocus(): Promise<void> {
+    const modal = await this.modalCtrl.getTop();
+    await modal?.setCurrentBreakpoint(1);
+  }
+
+  async onCommentBlur(): Promise<void> {
+    const modal = await this.modalCtrl.getTop();
+    await modal?.setCurrentBreakpoint(0.62);
+  }
+
   async submit(): Promise<void> {
     if (!this.isValid) return;
 
     const alert = await this.alertCtrl.create({
       header: 'Publicar avaliação?',
-      message: `${this.ratingLabel} · ${this.restaurantName}`,
+      message: `${this.ratingLabel} - ${this.restaurantName}`,
       buttons: [
         {
           text: 'Cancelar',

@@ -1,22 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Restaurants, Review } from '../restaurants/restaurants';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { CreateRatingRequest, CreateRatingResponse } from 'src/app/models/request.model';
 
 @Injectable({ providedIn: 'root' })
 export class RatingsService {
-  constructor(private restaurantsService: Restaurants) {}
+  private apiUrl = `${environment.apiBaseUrl}/ratings`;
+  constructor(private http: HttpClient) {}
 
-  submitReview(restaurantId: string, data: { userName: string; rating: number; comment: string }): void {
-    const restaurant = this.restaurantsService.getById(restaurantId);
-    if (!restaurant) return;
-
-    const review: Review = {
-      id: `r${Date.now()}`,
-      userName: data.userName,
-      rating: data.rating,
-      date: new Date().toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' }),
-      comment: data.comment,
-    };
-
-    restaurant.reviews.unshift(review);
+  create(body: CreateRatingRequest): Observable<CreateRatingResponse> {
+    return this.http.post<CreateRatingResponse>(this.apiUrl, body);
   }
 }

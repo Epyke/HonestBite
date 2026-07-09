@@ -16,7 +16,40 @@
     <p class="greeting-subtitle">Que restaurante te apetece hoje?</p>
   </section>
 
-  <!-- Filtros de categoria -->
+  <!-- Mais Populares -->
+  <section class="feed-section">
+    <div class="section-header">
+      <h3 class="section-title">Mais Populares</h3>
+      <ion-icon name="trophy-outline" class="section-icon"></ion-icon>
+    </div>
+    <swiper-container
+      slides-per-view="1.75"
+      space-between="12"
+      free-mode="true"
+      class="popular-swiper">
+      @if (loading) {
+        @for (i of skeletonItems; track i) {
+          <swiper-slide>
+            <restaurant-card-skeleton variant="compact"></restaurant-card-skeleton>
+          </swiper-slide>
+        }
+      } @else {
+        @for (restaurant of popularRestaurants; track restaurant.id) {
+          <swiper-slide>
+            <restaurant-card [restaurant]="restaurant" variant="compact"></restaurant-card>
+          </swiper-slide>
+        }
+      }
+    </swiper-container>
+  </section>
+
+  <div class="section-header">
+      <h3 class="section-title">
+        {{ selectedCategory === 'todos' ? 'Todos os Restaurantes' : 'Resultados' }}
+      </h3>
+      <span class="section-count">{{ filteredRestaurants.length }}</span>
+    </div>
+
   <section class="categories-section">
     <swiper-container slides-per-view="auto" space-between="8" free-mode="true" class="chips-swiper">
       @for (cat of categories; track cat.value) {
@@ -29,47 +62,26 @@
         </swiper-slide>
       }
     </swiper-container>
-  </section>
 
-  <!-- Mais Populares -->
-  <section class="feed-section">
-    <div class="section-header">
-      <h3 class="section-title">Mais Populares</h3>
-      <ion-icon name="trophy-outline" class="section-icon"></ion-icon>
-    </div>
-    <swiper-container
-      slides-per-view="1.75"
-      space-between="12"
-      free-mode="true"
-      class="popular-swiper">
-      @for (restaurant of popularRestaurants; track restaurant.id) {
-        <swiper-slide>
-          <restaurant-card [restaurant]="restaurant" variant="compact"></restaurant-card>
-        </swiper-slide>
+    @if (loading) {
+      <div class="cards-list">
+        @for (i of skeletonItems; track i) {
+          <restaurant-card-skeleton variant="full"></restaurant-card-skeleton>
+        }
+      </div>
+    } @else {
+      @if (filteredRestaurants.length === 0) {
+        <div class="empty-state">
+          <p class="empty-text">Sem restaurantes nesta categoria.</p>
+        </div>
       }
-    </swiper-container>
-  </section>
 
-  <!-- Lista completa / filtrada -->
-  <section class="feed-section">
-    <div class="section-header">
-      <h3 class="section-title">
-        {{ selectedCategory === 'todos' ? 'Todos os Restaurantes' : 'Resultados' }}
-      </h3>
-      <span class="section-count">{{ filteredRestaurants.length }}</span>
-    </div>
-
-    @if (filteredRestaurants.length === 0) {
-      <div class="empty-state">
-        <p class="empty-text">Sem restaurantes nesta categoria.</p>
+      <div class="cards-list">
+        @for (restaurant of filteredRestaurants; track restaurant.id) {
+          <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
+        }
       </div>
     }
-
-    <div class="cards-list">
-      @for (restaurant of filteredRestaurants; track restaurant.id) {
-        <restaurant-card [restaurant]="restaurant" variant="full"></restaurant-card>
-      }
-    </div>
   </section>
 
 </ion-content>

@@ -120,6 +120,12 @@
   ion-icon { color: #ffffff; font-size: 14px; }
 }
 
+.category-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .category-badge {
   display: inline-flex;
   align-items: center;
@@ -214,13 +220,13 @@
 }
 
 // ── Favorite button ───────────────────────────
-.fav-btn-wrapper {
+.fav-btn {
+  @extend .hero-btn;
+  --color: #e53e3e;
   position: absolute;
   top: calc(14px + env(safe-area-inset-top));
   right: 8px;
 }
-
-.fav-btn { @extend .hero-btn; --color: #e53e3e; }
 
 // ── Schedule ──────────────────────────────────
 .schedule-section { margin-bottom: 24px; }
@@ -268,4 +274,11 @@
   font-weight: 600;
 
   &.closed { color: #e53e3e; font-weight: 500; }
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

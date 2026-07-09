@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { starSharp, locationOutline, cashOutline } from 'ionicons/icons';
-import { Restaurant } from '../../services/restaurants/restaurants';
+import { RestaurantListItem } from '../../models/restaurant.model';
 
 @Component({
   selector: 'restaurant-card',
@@ -13,7 +13,7 @@ import { Restaurant } from '../../services/restaurants/restaurants';
   imports: [IonIcon],
 })
 export class RestaurantCardComponent {
-  @Input() restaurant!: Restaurant;
+  @Input() restaurant!: RestaurantListItem;
   @Input() variant: 'compact' | 'full' = 'full';
 
   constructor(private router: Router) {
@@ -23,4 +23,8 @@ export class RestaurantCardComponent {
   openDetail(): void {
     this.router.navigate(['/restaurant', this.restaurant.id]);
   }
+
+  get coverUrl(): string { return this.restaurant.cover; }
+  get categoryLabel(): string { return this.restaurant.categories?.[0]?.label ?? ''; }
+  get city(): string { return this.restaurant.adress?.city ?? ''; }
 }
