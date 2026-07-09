@@ -120,7 +120,7 @@ export class RestaurantDetailPage implements OnInit {
         restaurantId: this.restaurant!.id,
         restaurantName: this.restaurant!.name,
       },
-      breakpoints: [0, 0.62],
+      breakpoints: [0, 0.62, 1],
       initialBreakpoint: 0.62,
       backdropBreakpoint: 0.62,
       handleBehavior: 'cycle',

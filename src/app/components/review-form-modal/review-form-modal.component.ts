@@ -53,6 +53,16 @@ export class ReviewFormModalComponent {
     this.rating = value;
   }
 
+  async onCommentFocus(): Promise<void> {
+    const modal = await this.modalCtrl.getTop();
+    await modal?.setCurrentBreakpoint(1);
+  }
+
+  async onCommentBlur(): Promise<void> {
+    const modal = await this.modalCtrl.getTop();
+    await modal?.setCurrentBreakpoint(0.62);
+  }
+
   async submit(): Promise<void> {
     if (!this.isValid) return;
 
