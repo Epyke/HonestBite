@@ -9,6 +9,14 @@ import { AlertController } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth';
+import { addIcons } from 'ionicons';
+import {
+  personOutline,
+  mailOutline,
+  lockClosedOutline,
+  eyeOutline,
+  eyeOffOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-register',
@@ -31,6 +39,8 @@ export class RegisterPage {
     private router: Router,
     private alertCtrl: AlertController,
   ) {
+    addIcons({ personOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline });
+
     this.registerForm = this.formBuilder.group(
       {
         nomeCompleto: ['', [Validators.required, Validators.minLength(2)]],
