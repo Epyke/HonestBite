@@ -5,6 +5,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { AlertController } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth';
@@ -24,7 +25,12 @@ export class RegisterPage {
   loading = false;
   registered = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private alertCtrl: AlertController,
+  ) {
     this.registerForm = this.formBuilder.group(
       {
         nomeCompleto: ['', [Validators.required, Validators.minLength(2)]],
@@ -51,6 +57,7 @@ export class RegisterPage {
     try {
       const { nomeCompleto, email, password } = this.registerForm.value;
       await firstValueFrom(this.authService.register({ username: nomeCompleto, email, password }));
+      await this.showSuccessAlert();
       this.router.navigateByUrl('/login');
     } catch (err: any) {
       if (err?.status === 409) {
@@ -62,6 +69,16 @@ export class RegisterPage {
     } finally {
       this.loading = false;
     }
+  }
+
+  private async showSuccessAlert(): Promise<void> {
+    const alert = await this.alertCtrl.create({
+      header: 'Conta criada',
+      message: 'A sua conta foi criada com sucesso.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+    await alert.onDidDismiss();
   }
 
   private passwordsIguaisValidator(): ValidatorFn {

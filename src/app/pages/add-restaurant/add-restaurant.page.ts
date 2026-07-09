@@ -6,6 +6,7 @@ import {
   IonButton, IonButtons, IonCard, IonContent, IonIcon,
   IonInput, IonItem, IonList, IonSelect, IonSelectOption,
   IonTextarea, IonToggle, IonNote, IonDatetime, IonDatetimeButton, IonModal, IonSpinner,
+  AlertController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -50,7 +51,13 @@ export class AddRestaurantPage implements OnInit {
   { day: 'sun', label: 'Domingo', isOpen: false, intervals: [{ open: '2024-01-01T12:00:00', close: '2024-01-01T22:00:00' }] },
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, private categoriesService: CategoriesService, private restaurantService: RestaurantsService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private categoriesService: CategoriesService,
+    private restaurantService: RestaurantsService,
+    private alertCtrl: AlertController,
+  ) {
     addIcons({restaurantOutline, locationOutline, pricetagOutline, arrowBackOutline, timeOutline, listOutline, addOutline, trashOutline, imageOutline, cloudUploadOutline, closeCircle});
 
     this.form = this.fb.group({
@@ -206,8 +213,9 @@ export class AddRestaurantPage implements OnInit {
   const menus = this.menuItems.map(m => m.file);
 
   this.restaurantService.create(data, this.coverFile, menus).subscribe({
-      next: (res) => {
+      next: async (res) => {
         this.submitting = false;
+        await this.showSuccessAlert();
         this.router.navigate(['/tabs/tab4']);
       },
       error: (err) => {
@@ -216,6 +224,16 @@ export class AddRestaurantPage implements OnInit {
         this.submitError = 'Ocorreu um erro ao criar o restaurante. Tenta novamente.';
       },
     });
+  }
+
+  private async showSuccessAlert(): Promise<void> {
+    const alert = await this.alertCtrl.create({
+      header: 'Restaurante criado',
+      message: 'O seu restaurante foi criado com sucesso.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+    await alert.onDidDismiss();
   }
 
 }
